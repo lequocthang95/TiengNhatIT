@@ -14,6 +14,11 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
+import Button from '@material-ui/core/Button';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import PostAddIcon from '@material-ui/icons/PostAdd';
+import SettingsApplicationsIcon from '@material-ui/icons/SettingsApplications';
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -90,7 +95,11 @@ const useStyles = makeStyles((theme) => ({
       display: 'none',
     },
   },
+  userIcon:{
+    marginRight: '5px'
+  }
 }));
+let userInfo= true;
 
 export default function Header() {
   const classes = useStyles();
@@ -98,6 +107,7 @@ export default function Header() {
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
   const isMenuOpen = Boolean(anchorEl);
+  const isAccountMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
   const handleProfileMenuOpen = (event) => {
@@ -112,12 +122,16 @@ export default function Header() {
     setAnchorEl(null);
     handleMobileMenuClose();
   };
+  const handleAccountMenuClose = () => {
+    setAnchorEl(null);
+    handleMobileMenuClose();
+  };
 
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
-  const menuId = 'primary-search-account-menu';
+  const menuId = 'primary-search-menu';
   const renderMenu = (
     <Menu
       anchorEl={anchorEl}
@@ -131,6 +145,22 @@ export default function Header() {
       <MenuItem onClick={handleMenuClose}>Trang chủ</MenuItem>
       <MenuItem onClick={handleMenuClose}>Cộng đồng</MenuItem>
       <MenuItem onClick={handleMenuClose}>Bài Viết</MenuItem>
+    </Menu>
+  );
+  const AccountMenu = 'primary-search-account-menu';
+  const renderAccountMenu  = (
+    <Menu
+      anchorEl={anchorEl}
+      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+      id={AccountMenu}
+      keepMounted
+      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+      open={isAccountMenuOpen}
+      onClose={handleAccountMenuClose}
+    >.
+      <MenuItem onClick={handleAccountMenuClose}><SettingsApplicationsIcon className={classes.userIcon} />Quản Lý</MenuItem>
+      <MenuItem onClick={handleAccountMenuClose}><PostAddIcon className={classes.userIcon} />Đăng bài viết</MenuItem>
+      <MenuItem onClick={handleAccountMenuClose}><ExitToAppIcon className={classes.userIcon} /> Đăng Xuất</MenuItem>
     </Menu>
   );
 
@@ -177,7 +207,7 @@ export default function Header() {
 
   return (
     <div className={classes.grow}>
-      <AppBar position="static">
+      <AppBar position="fixed">
         <Toolbar>
           <Typography className={classes.title} variant="h6" noWrap>
             Team 2 IT
@@ -212,27 +242,29 @@ export default function Header() {
             />
           </div>
           <div className={classes.grow} />
-          <div className={classes.sectionDesktop}>
-            <IconButton aria-label="show 4 new mails" color="inherit">
-              <Badge badgeContent={4} color="secondary">
-                <MailIcon />
-              </Badge>
-            </IconButton>
-            <IconButton aria-label="show 17 new notifications" color="inherit">
-              <Badge badgeContent={17} color="secondary">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
-            <IconButton
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
-              color="inherit"
-            >
-              <AccountCircle />
-            </IconButton>
+          {userInfo ? (
+          <div>
+            <div className={classes.sectionDesktop}>
+              <IconButton aria-label="show 4 new mails" color="inherit">
+                <Badge badgeContent={4} color="secondary">
+                  <MailIcon />
+                </Badge>
+              </IconButton>
+              <IconButton aria-label="show 17 new notifications" color="inherit">
+                <Badge badgeContent={17} color="secondary">
+                  <NotificationsIcon />
+                </Badge>
+              </IconButton>
+              <IconButton
+                edge="end"
+                aria-label="account of current user"
+                aria-controls={AccountMenu}
+                aria-haspopup="true"
+                onClick={handleProfileMenuOpen}
+                color="inherit"
+              >
+                <AccountCircle />
+              </IconButton>
           </div>
           <div className={classes.sectionMobile}>
             <IconButton
@@ -245,10 +277,21 @@ export default function Header() {
               <MoreIcon />
             </IconButton>
           </div>
+            </div>
+          ) : (
+            <div>
+              <ButtonGroup disableElevation variant="contained" color="primary">
+                <Button>Đăng Ký</Button>
+                <Button>Đăng Nhập</Button>
+              </ButtonGroup>
+            </div>
+          )}
+         
         </Toolbar>
       </AppBar>
       {renderMobileMenu}
       {renderMenu}
+      {renderAccountMenu}
     </div>
   );
 }
