@@ -1,3 +1,10 @@
+a {
+  color: #fff;
+  text-decoration: none;
+}
+a:hover {
+  color: #ff8000;
+}
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

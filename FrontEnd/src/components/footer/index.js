@@ -7,6 +7,7 @@ import HomeIcon from '@material-ui/icons/Home';
 import WhatshotIcon from '@material-ui/icons/Whatshot';
 import GrainIcon from '@material-ui/icons/Grain';
 import { Container } from '@material-ui/core';
+import AssignmentLateIcon from '@material-ui/icons/AssignmentLate';
 
 const useStyles = makeStyles((theme) => ({
   link: {
@@ -30,10 +31,6 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-function handleClick(event) {
-  event.preventDefault();
-  console.info('You clicked a breadcrumb.');
-}
 
 export default function IconBreadcrumbs() {
   const classes = useStyles();
@@ -42,19 +39,25 @@ export default function IconBreadcrumbs() {
     <div className={classes.footer}>
       <Container className={classes.container}>
           <Breadcrumbs aria-label="breadcrumb">
-          <Link color="inherit" href="/" onClick={handleClick} className={classes.link}>
+          <Link color="inherit" href="/"  className={classes.link}>
               <HomeIcon className={classes.icon} />
               Team 2 IT
           </Link>
-          <Link
+          <Link href="/gioithieu"
               color="inherit"
-              href="/getting-started/installation/"
-              onClick={handleClick}
               className={classes.link}
           >
               <WhatshotIcon className={classes.icon} />
               Giới Thiệu
           </Link>
+          <Link href="/dieukhoan"
+              color="inherit"
+              className={classes.link}
+          >
+            <AssignmentLateIcon className={classes.icon} />
+            Điều khoản
+          </Link>
+
           <Typography color="textPrimary" className={classes.link}>
               <GrainIcon className={classes.icon} />
               Liên Kết

@@ -25,25 +25,25 @@ export default function NestedGrid() {
       <Typography variant="h2" className={classes.title}>Chủ đề </Typography>
       <div className={classes.root}>
         <Grid container spacing={3}>
-          <Grid container item xs={12} sm={3} spacing={0}>
+          <Grid container item xs={12} sm={3} spacing={1}>
             <OwnerCard />
           </Grid>
-          <Grid container item xs={12} sm={3} spacing={0}>
+          <Grid container item xs={12} sm={3} spacing={1}>
             <OwnerCard />
           </Grid>
-          <Grid container item xs={12} sm={3} spacing={0}>
+          <Grid container item xs={12} sm={3} spacing={1}>
             <OwnerCard />
           </Grid>
-          <Grid container item xs={12} sm={3} spacing={0}>
+          <Grid container item xs={12} sm={3} spacing={1}>
             <OwnerCard />
           </Grid>
-          <Grid container item xs={12} sm={3} spacing={0}>
+          <Grid container item xs={12} sm={3} spacing={1}>
             <OwnerCard />
           </Grid>
-          <Grid container item xs={12} sm={3} spacing={0}>
+          <Grid container item xs={12} sm={3} spacing={1}>
             <OwnerCard />
           </Grid>
-          <Grid container item xs={12} sm={3} spacing={0}>
+          <Grid container item xs={12} sm={3} spacing={1}>
             <OwnerCard />
           </Grid>
           <Grid container item xs={12} sm={3} spacing={0}>
