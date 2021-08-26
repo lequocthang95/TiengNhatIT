@@ -10,14 +10,13 @@ const useStyles = makeStyles((theme) => ({
   },
   root: {
     flexGrow: 1,
-  
   },
   title: {
     marginBottom: '20px'
   }
 }));
 
-export default function NestedGrid() {
+export default function HomePage() {
   const classes = useStyles();
 
   return (

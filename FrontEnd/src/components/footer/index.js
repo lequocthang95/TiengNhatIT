@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   container: {
     display: 'flex',
     justifyContent: 'space-between',
-    marginTop: '50px',
+    marginTop: '40px',
     height: '80px',
     alignItems: 'center',
   },
@@ -26,13 +26,14 @@ const useStyles = makeStyles((theme) => ({
     height: 20,
   },
   footer: {
+    flexGrow: 1,
     backgroundColor: 'rgb(250, 243, 222)',
     height: '80px',
   }
 }));
 
 
-export default function IconBreadcrumbs() {
+export default function Footer() {
   const classes = useStyles();
 
   return (
@@ -60,7 +61,7 @@ export default function IconBreadcrumbs() {
 
           <Typography color="textPrimary" className={classes.link}>
               <GrainIcon className={classes.icon} />
-              Liên Kết
+              <Link href="/lienhe" color="inherit">Liên hệ</Link>
           </Typography>
           </Breadcrumbs>
           <div>© 2021 Team 2 IT</div>

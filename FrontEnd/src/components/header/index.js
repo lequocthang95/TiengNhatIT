@@ -20,6 +20,7 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import PostAddIcon from '@material-ui/icons/PostAdd';
 import SettingsApplicationsIcon from '@material-ui/icons/SettingsApplications';
 import {  Link,} from 'react-router-dom';
+import Container from '@material-ui/core/Container';
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -102,6 +103,9 @@ const useStyles = makeStyles((theme) => ({
   },
   selected:{
     color: '#ff8000',
+  },
+  colorBlack: {
+    color: 'rgba(0, 0, 0, 0.87)'
   }
 }));
 
@@ -136,9 +140,9 @@ export default function Header() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}><Link to="/">Trang chủ</Link></MenuItem>
-      <MenuItem onClick={handleMenuClose}><Link to="/congdong">Cộng đồng</Link></MenuItem>
-      <MenuItem onClick={handleMenuClose}><Link to="/baiviet">Bài Viết</Link></MenuItem>
+      <MenuItem onClick={handleMenuClose}><Link className={classes.colorBlack} to="/">Trang chủ</Link></MenuItem>
+      <MenuItem onClick={handleMenuClose}><Link className={classes.colorBlack} to="/congdong">Cộng đồng</Link></MenuItem>
+      <MenuItem onClick={handleMenuClose}><Link className={classes.colorBlack} to="/baiviet">Bài Viết</Link></MenuItem>
     </Menu>
   );
 
@@ -225,6 +229,7 @@ export default function Header() {
   return (
     <div className={classes.grow}>
       <AppBar position="fixed">
+      <Container>
         <Toolbar>
           <Link  onClick = {() => setSelectedType('')} to="/">
             <Typography className={classes.title} variant="h6" noWrap>
@@ -335,6 +340,7 @@ export default function Header() {
             </div>
           )} 
         </Toolbar>
+        </Container>
       </AppBar>
       {renderMobileMenu}
       {renderMenu}
