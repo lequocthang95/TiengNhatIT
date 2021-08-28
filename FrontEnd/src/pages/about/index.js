@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
         color: 'rgb(45, 55, 72)',
     },
     img:{
-        border: '1px solid rgba(100, 110, 115)'
+        boxShadow: '0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%)', 
     },
     btn:{
         marginTop: '20px',
@@ -105,9 +105,9 @@ export default function About() {
                 </Grid>
             </Grid>
             <div className={classes.root}>
-                <ImageList rowHeight={220} cols={4}>
+                <ImageList className={classes.img} rowHeight={220} cols={4}>
                     {itemData.map((item) => (
-                    <ImageListItem className={classes.img} key={item.img} cols={item.cols || 1} rows={item.rows || 1}>
+                    <ImageListItem key={item.img} cols={item.cols || 1} rows={item.rows || 1}>
                         <img src={item.img} alt={item.title} />
                     </ImageListItem>
                     ))}
