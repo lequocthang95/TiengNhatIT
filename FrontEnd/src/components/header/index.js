@@ -14,13 +14,13 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
-import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Button from '@material-ui/core/Button';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import PostAddIcon from '@material-ui/icons/PostAdd';
 import SettingsApplicationsIcon from '@material-ui/icons/SettingsApplications';
 import {  Link,} from 'react-router-dom';
 import Container from '@material-ui/core/Container';
+
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -39,9 +39,9 @@ const useStyles = makeStyles((theme) => ({
   search: {
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
-    backgroundColor: alpha(theme.palette.common.white, 0.15),
+    backgroundColor: alpha(theme.palette.common.white, 0.8),
     '&:hover': {
-      backgroundColor: alpha(theme.palette.common.white, 0.25),
+      backgroundColor: alpha(theme.palette.common.white, 1),
     },
     marginRight: theme.spacing(2),
     marginLeft: 0,
@@ -228,7 +228,7 @@ export default function Header() {
 
   return (
     <div className={classes.grow}>
-      <AppBar position="fixed">
+      <AppBar position="fixed" color="default">
       <Container>
         <Toolbar>
           <Link  onClick = {() => setSelectedType('')} to="/">
@@ -306,37 +306,35 @@ export default function Header() {
               >
                 <AccountCircle />
               </IconButton>
-          </div>
-          <div className={classes.sectionMobile}>
-            <IconButton
-              aria-label="show more"
-              aria-controls={mobileMenuId}
-              aria-haspopup="true"
-              onClick={handleMobileMenuOpen}
-              color="inherit"
-            >
-              <MoreIcon />
-            </IconButton>
-          </div>
             </div>
+            <div className={classes.sectionMobile}>
+              <IconButton
+                aria-label="show more"
+                aria-controls={mobileMenuId}
+                aria-haspopup="true"
+                onClick={handleMobileMenuOpen}
+                color="inherit"
+              >
+                <MoreIcon />
+              </IconButton>
+            </div>
+          </div>
           ) : (
             <div>
-              <ButtonGroup disableElevation variant="contained" color="primary">
-                <Button>
-                  <Link className={selectedType==='signup' ? classes.selected : ''}
-                    onClick = {() => setSelectedType('signup')}
-                    to="/dangky">
-                      Đăng Ký
-                  </Link>
-                </Button>
-                <Button>
-                  <Link className={selectedType==='signin' ? classes.selected : ''}
-                    onClick = {() => setSelectedType('signin')}
-                    to="/dangnhap">
-                      Đăng Nhập
-                  </Link>
-                </Button>
-              </ButtonGroup>
+              <Button>
+                <Link className={selectedType==='signup' ? classes.selected : ''}
+                  onClick = {() => setSelectedType('signup')}
+                  to="/dangky">
+                    Đăng Ký
+                </Link>
+              </Button>
+              <Button>
+                <Link className={selectedType==='signin' ? classes.selected : ''}
+                  onClick = {() => setSelectedType('signin')}
+                  to="/dangnhap">
+                    Đăng Nhập
+                </Link>
+              </Button>
             </div>
           )} 
         </Toolbar>
