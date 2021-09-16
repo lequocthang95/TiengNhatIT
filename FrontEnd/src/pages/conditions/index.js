@@ -1,5 +1,7 @@
 import React from 'react';
-import { Container, Grid, makeStyles, Typography,Box  } from '@material-ui/core';
+import { Container, Grid, makeStyles, Typography,Box, Button } from '@material-ui/core';
+import { Link } from 'react-router-dom'
+
 const useStyles = makeStyles({
     root: {
         margin: 0,
@@ -14,7 +16,6 @@ const useStyles = makeStyles({
         marginTop: '20px',
         boxShadow: 'rgb(140 152 164 / 18%) 0px 10px 40px 10px',
         borderRadius: '8px',
-        paddingBottom: '20px',
     },
     head:{
         backgroundColor: 'rgb(25, 118, 210)',
@@ -48,6 +49,10 @@ const useStyles = makeStyles({
         border: '1px solid rgba(0, 0, 0, 0.12)',
         borderRadius: '4px',
         padding: '20px',
+    },
+    btn:{
+        margin: 'auto',
+        marginTop: '15px',
     },
 })
 
@@ -83,8 +88,11 @@ export default function Conditions() {
                         <Box className={classes.notice}>
                             <Typography variant='h5'>Làm thế nào để liên hệ với chúng tôi?</Typography>
                             <Typography variant='body1'>Nếu bạn có bất kỳ câu hỏi hoặc thắc mắc nào về chính sách điều khoản, vui lòng liên hệ với chúng tôi.</Typography>
-                            <Typography variant='h6'>lequocthang95@gmail.com</Typography>
-                            <Typography variant='body2'>Việt Nam, Quảng Trị</Typography>
+                            <Link to="/lienhe">
+                                <Button className={classes.btn} variant="contained" color="primary" >
+                                    Contacts Us   
+                                </Button>
+                            </Link> 
                         </Box>
                     </Grid>
                 </Grid>

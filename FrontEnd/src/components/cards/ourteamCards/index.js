@@ -1,14 +1,11 @@
 import React,{ useState,useEffect } from 'react';
 import { Grid } from '@material-ui/core'
-import OurTeam from './ourTeam';
+import OurTeamFake from './ourTeamFake';
 import OneCard from './oneCard';
 
-
-
 export default function OurTeamCards() {
-  const [inforTeam,setInforTeam]= useState(OurTeam);
+  const [inforTeam,setInforTeam]= useState(OurTeamFake);
   useEffect(() => {
-
     return () => {
       
     }
@@ -16,7 +13,7 @@ export default function OurTeamCards() {
   return (
     <div>
     <Grid container spacing={3}>            
-      {inforTeam.map((infor) => (<Grid item sm={3} xs={6}><OneCard inforTeam={inforTeam} setInforTeam={setInforTeam} infor={infor}/></Grid>))}
+      {inforTeam.map((infor) => (<Grid item md={3} xs={6}><OneCard inforTeam={inforTeam} setInforTeam={setInforTeam} infor={infor}/></Grid>))}
     </Grid>
     </div>
   )
