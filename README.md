@@ -41,8 +41,9 @@ We are using Laravel(version 8) for developing the backend part. It is including
 - Firstly, make sure you have installed the `compsoser` and `php >7.3` (Laravel 8 is requiring PHP 7.3 over)
 - Move to **Backend** folder : `cd Backend`
 - Run `composer install`(or `composer update` if it is not the first time) to install the libraries which are based on **composer.json**
-- Modify your database connection and other config in *.env* file
-
+- Create .env file from .env.example file and update the .env file
+  - Modify your database connection 
+  - Generate application key by using command `php artisan key:generate`
 *if you are using port in URL, please update the APP_URL with port num*
 - After installation finish, run `php artisan migrate` to migrate the database.
 - Lastly, run `php artisan serve` to start the backend server
