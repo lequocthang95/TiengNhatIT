@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use TCG\Voyager\Models\DataRow;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,6 +14,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        $this->call([
+            VoyagerDatabaseSeeder::class,
+            VoyagerDummyDatabaseSeeder::class,
+        ]);
     }
 }
