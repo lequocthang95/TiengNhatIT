@@ -15,10 +15,9 @@ const useStyles = makeStyles((theme) => ({
   },
   container: {
     display: 'flex',
-    justifyContent: 'space-between',
-    marginTop: '40px',
-    height: '80px',
+    justifyContent: 'space-between', 
     alignItems: 'center',
+    minHeight: '80px',  
   },
   icon: {
     marginRight: theme.spacing(0.5),
@@ -27,8 +26,8 @@ const useStyles = makeStyles((theme) => ({
   },
   footer: {
     flexGrow: 1,
-    backgroundColor: 'rgb(250, 243, 222)',
-    height: '80px',
+    backgroundColor: '#f5f5f5',
+    marginTop: '40px',
   }
 }));
 
@@ -58,7 +57,6 @@ export default function Footer() {
             <AssignmentLateIcon className={classes.icon} />
             Điều khoản
           </Link>
-
           <Typography color="textPrimary" className={classes.link}>
               <GrainIcon className={classes.icon} />
               <Link href="/lienhe" color="inherit">Liên hệ</Link>

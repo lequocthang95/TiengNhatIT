@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{ useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -11,6 +11,8 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import VisibilityIcon from '@material-ui/icons/Visibility';
+import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -18,12 +20,14 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    paddingBottom: theme.spacing(2)
   },
   avatar: {
     margin: theme.spacing(1),
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
+    position: 'relative',
     width: '100%', // Fix IE 11 issue.
     marginTop: theme.spacing(3),
   },
@@ -35,11 +39,24 @@ const useStyles = makeStyles((theme) => ({
   },
   row: {
     display: 'flex',
+  },
+  icon: {
+    position: 'absolute',
+    zIndex:'100',
+    color: 'rgb(186, 184, 184)',
+    top: '160px',
+    right: '10px',
+    cursor: 'pointer',
   }
 }));
 
 export default function SignUp() {
   const classes = useStyles();
+  const [labelType,setLabelType] = useState('password')
+  const handleShowPassword = ()=>{
+    labelType === 'password'? setLabelType('text') : setLabelType('password') ;
+    
+  }
 
   return (
     <Container component="main" maxWidth="xs">
@@ -86,6 +103,7 @@ export default function SignUp() {
                 name="email"
                 autoComplete="email"
               />
+              {labelType === 'password' ? <VisibilityIcon className={classes.icon} onClick={handleShowPassword} /> : <VisibilityOffIcon  className={classes.icon} onClick={handleShowPassword} /> }
             </Grid>
             <Grid item xs={12}>
               <TextField
@@ -94,7 +112,7 @@ export default function SignUp() {
                 fullWidth
                 name="password"
                 label="Password"
-                type="password"
+                type={labelType}
                 id="password"
                 autoComplete="current-password"
               />

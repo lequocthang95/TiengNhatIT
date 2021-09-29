@@ -10,7 +10,7 @@ import itemData from './itemData.js';
 import OurTeamCards from '../../components/cards/ourteamCards'
 import Box from '@material-ui/core/Box';
 import { Link } from 'react-router-dom';
-
+import Ripple from '../../components/animations/ripple'
 
 const useStyles = makeStyles((theme) => ({
     root:{
@@ -34,6 +34,7 @@ const useStyles = makeStyles((theme) => ({
         fontWeight: '500',
         paddingLeft: '10px',
         paddingRight: '10px',
+        
     },
     appendix:{
         margin: '0px 0px 0.35em',
@@ -50,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
         color: 'rgb(45, 55, 72)',
     },
     img:{
-        border: '1px solid rgba(100, 110, 115)'
+        boxShadow: '0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%)', 
     },
     btn:{
         marginTop: '20px',
@@ -69,17 +70,18 @@ const useStyles = makeStyles((theme) => ({
     },
 }))
 
+
 export default function About() {
     const classes = useStyles();
     return (
         <Container>
             <Grid container>
-                <Grid item xs={12} sm={6} className={classes.head}>
-                    <div>
+              <Grid item xs={12} sm={6} className={classes.head}>
+                    {Ripple(
                         <p className={classes.appendix}>
-                            ABOUT US
+                            about us
                         </p>
-                    </div>
+                    )}
                     <Box className={classes.solgan} fontSize={{ xs: 'h6.fontSize', sm: 'h5.fontSize', md: 'h4.fontSize' }}>
                         Chúng tôi đem lại cho cộng đồng IT sử dụng tiếng Nhật những chia sẽ hữu ích.
                     </Box>
@@ -88,14 +90,15 @@ export default function About() {
                         kết hợp với một cộng đồng lớn những người đang học tập, làm việc đang sữ dụng tiếng Nhật trong lĩnh vực IT.
                         Chúng tôi hy vọng sẽ mang lại những đóng góp, trợ giúp, những chia sẽ hữu ích cho bạn.
                     </Box>
-                </Grid><Grid item xs={12} sm={6} className={classes.head}>
-                    <div>
+                </Grid>
+                <Grid item xs={12} sm={6} className={classes.head}>
+                    {Ripple(
                         <p className={classes.appendix}>
                             how to
                         </p>
-                    </div>
+                    )}
                     <Box className={classes.solgan} fontSize={{ xs: 'h6.fontSize', sm: 'h5.fontSize', md: 'h4.fontSize' }}>
-                        Chúng tôi hoạt động dựa trên tiêu chí chia sẽ nhiều hơn thành công lơn hơn.
+                        <rotateInDownLeftDiv>Chúng tôi hoạt động dựa trên tiêu chí chia sẽ nhiều hơn thành công lơn hơn.</rotateInDownLeftDiv>
                     </Box>
                     <Box fontSize={{ xs: 'body2.fontSize', sm: 'h6.fontSize' }}>
                         Đến với Team 2 IT bạn có thể tra cứu các từ vựng theo từng chủ đề với những ví dụ minh họa cụ thể.
@@ -105,9 +108,9 @@ export default function About() {
                 </Grid>
             </Grid>
             <div className={classes.root}>
-                <ImageList rowHeight={220} cols={4}>
+                <ImageList className={classes.img} rowHeight={220} cols={4}>
                     {itemData.map((item) => (
-                    <ImageListItem className={classes.img} key={item.img} cols={item.cols || 1} rows={item.rows || 1}>
+                    <ImageListItem key={item.img} cols={item.cols || 1} rows={item.rows || 1}>
                         <img src={item.img} alt={item.title} />
                     </ImageListItem>
                     ))}
