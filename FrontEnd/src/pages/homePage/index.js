@@ -2,11 +2,7 @@ import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import { Container,Typography,Button,CardMedia,Link, } from '@material-ui/core';
-import Category from '../../components/cards/category';
-import SearchList from '../../components/searchList';
-import top100Films from '../../components/cards/category/test';
-import Typed from 'react-typed';
-
+import Categories from '../../components/categories';
 
 const useStyles = makeStyles((theme) => ({
   header: {
@@ -46,8 +42,7 @@ export default function HomePage() {
   const [button1,setButton1] =useState('outlined')
   const [button2,setButton2] =useState('contained')
   const classes = useStyles();
-  let test = top100Films.slice(1,7)
-  
+
   return (
     <Container>
       <Grid container className={classes.header} spacing={3}>
@@ -84,15 +79,8 @@ export default function HomePage() {
       <Grid container style={{display: 'flex', justifyContent: 'center', height: '100px', marginTop: '20px', alignItems: 'center'}}>
         <Typography variant="h4" className={classes.title}>Chủ đề </Typography>
       </Grid>
-      <Grid container style={{backgroundColor: '#f5f5f5'}} spacing={3}>
-        <Grid item className={classes.list} md={3}>
-          <SearchList/>
-        </Grid>
-        <Grid item container md={9} xs={12} style={{paddingTop: '60px'}} >
-          {test.map((item) => (<Grid item style={{padding: '15px'}} md={4} key={item.title}>
-            <Category title={item}/>
-          </Grid>))}  
-        </Grid>
+      <Grid container style={{backgroundColor: '#f5f5f5', flexWrap:'wrap'}} spacing={2}>
+        <Categories/>  
       </Grid>
       <Grid container style={{display:'flex',alignItems: 'center',justifyContent: 'center'}}>
         <div className={classes.footer}>

@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { Container, makeStyles, Typography, Button,Link, Grid, Avatar} from '@material-ui/core';
+import { Container, makeStyles, Button,Link, Grid, Avatar} from '@material-ui/core';
 import OurTeam from '../../components/cards/ourteamCards/ourTeam';
 import Carousel, { Dots, autoplayPlugin,slidesToShowPlugin,} from "@brainhubeu/react-carousel";
 import "@brainhubeu/react-carousel/lib/style.css";
+import { Box, Tabs, Tab, Typography } from '@mui/material';
+import PropTypes from 'prop-types';
 
 const useStyles = makeStyles((theme) => ({
     header: { 
@@ -18,10 +20,45 @@ const useStyles = makeStyles((theme) => ({
         marginTop: '10px',  
     }
 }))
+function TabPanel(props) {
+    const { children, value, index, ...other } = props;
+  
+    return (
+      <div
+        role="tabpanel"
+        hidden={value !== index}
+        id={`simple-tabpanel-${index}`}
+        aria-labelledby={`simple-tab-${index}`}
+        {...other}
+      >
+        {value === index && (
+          <Box sx={{ p: 3 }}>
+            <Typography>{children}</Typography>
+          </Box>
+        )}
+      </div>
+    );
+  }
+  
+  TabPanel.propTypes = {
+    children: PropTypes.node,
+    index: PropTypes.number.isRequired,
+    value: PropTypes.number.isRequired,
+  };
+  
+  function a11yProps(index) {
+    return {
+      id: `simple-tab-${index}`,
+      'aria-controls': `simple-tabpanel-${index}`,
+    };
+  }
 export default function Community() {
     const classes=useStyles();
     const [current, setCurrent] = useState(0);
-   
+    const [value, setValue] = React.useState(0);
+    const handleChange = (event, newValue) => {
+        setValue(newValue);
+    }
     return (
         <Container>
             <div className={classes.header}>
@@ -112,9 +149,25 @@ export default function Community() {
                     <div style={{ width: '80%', borderTop: '1px solid rgba(63, 81, 181, 0.5)',borderStyle: 'double',margin: '10px',}}></div>                
                 </div>
             </div>
-           
             <div className={classes.body}>
-
+                <Box sx={{ width: '100%' }}>
+                    <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+                    <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
+                        <Tab label="Item One" {...a11yProps(0)} />
+                        <Tab label="Item Two" {...a11yProps(1)} />
+                        <Tab label="Item Three" {...a11yProps(2)} />
+                    </Tabs>
+                    </Box>
+                    <TabPanel value={value} index={0}>
+                    Item One
+                    </TabPanel>
+                    <TabPanel value={value} index={1}>
+                    Item Two
+                    </TabPanel>
+                    <TabPanel value={value} index={2}>
+                    Item Three
+                    </TabPanel>
+                </Box>
             </div> 
         </Container>
     )

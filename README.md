@@ -45,7 +45,7 @@ We are using Laravel(version 8) for developing the backend part. It is including
   - Modify your database connection 
   - Generate application key by using command `php artisan key:generate`
 *if you are using port in URL, please update the APP_URL with port num*
-- After installation finish, run `php artisan migrate` to migrate the database.
+- After installation finish, run `php artisan migrate` to migrate tphp artisan migrate:refresh --seedhe database.
 - Run `php artisan db:seed` to import the master data.
 - Lastly, run `php artisan serve` to start the backend server
 if there is no errors, it will be shown as below
