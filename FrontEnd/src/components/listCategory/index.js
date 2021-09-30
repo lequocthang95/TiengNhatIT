@@ -55,7 +55,7 @@ export default function ListCategory() {
       > 
         <MenuItem 
           disabledItemsFocusable='true'
-          sx={{textAlign: 'center', cursor: 'default', backgroundColor: '#f5f5f5', color:"#3f51b5", fontSize: 20}}>
+          sx={{textAlign: 'center', cursor: 'default', color:"#3f51b5", fontSize: 20}}>
             Danh sách chủ đề 
         </MenuItem> 
         <MenuList
