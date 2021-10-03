@@ -64,7 +64,7 @@ export default function OneCard({inforTeam,infor,setInforTeam}) {
           <Typography variant="h6">
            {infor.name}
           </Typography>
-          <Typography variant="body2" color="rgb(100, 110, 115)">
+          <Typography variant="body2">
             {infor.jobTitle}
           </Typography>
           <span className={classes.speak} >

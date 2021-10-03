@@ -98,7 +98,7 @@ export default function About() {
                         </p>
                     )}
                     <Box className={classes.solgan} fontSize={{ xs: 'h6.fontSize', sm: 'h5.fontSize', md: 'h4.fontSize' }}>
-                        <rotateInDownLeftDiv>Chúng tôi hoạt động dựa trên tiêu chí chia sẽ nhiều hơn thành công lơn hơn.</rotateInDownLeftDiv>
+                       Chúng tôi hoạt động dựa trên tiêu chí chia sẽ nhiều hơn thành công lơn hơn.
                     </Box>
                     <Box fontSize={{ xs: 'body2.fontSize', sm: 'h6.fontSize' }}>
                         Đến với Team 2 IT bạn có thể tra cứu các từ vựng theo từng chủ đề với những ví dụ minh họa cụ thể.

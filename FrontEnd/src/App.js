@@ -11,14 +11,20 @@ import NotFound from './pages/notFound';
 import About from './pages/about';
 import Conditions from './pages/conditions';
 import Contacts from './pages/contacts'
+import CreatePost from './pages/community/creatPost'
+import Vocabularies from './components/vocabularies'
 
 function App() {
+  const Login= true;
+  
   return (
     <BrowserRouter>
       <Header />
         <Switch>
           <Route path="/" component={HomePage} exact></Route>
-          <Route path="/congdong" component={Community}></Route>
+          <Route path="/chude"><Vocabularies/></Route>
+          <Route path="/congdong/ask" exact><CreatePost /></Route>
+          <Route path="/congdong"> <Community isLogin={Login} /></Route>
           <Route path="/baiviet" component={Blogs}></Route>
           <Route path="/dangnhap" component={SignIn}></Route>
           <Route path="/dangky" component={SignUp}></Route>

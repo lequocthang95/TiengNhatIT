@@ -3,6 +3,10 @@ export const INIT_STATE = {
       isLoading: false,
       data: [],
     },
+    postsData: {
+      isLoading: false,
+      data: [],
+    },
     user: {
       isLoading: false,
       data: [],

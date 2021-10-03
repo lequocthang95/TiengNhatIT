@@ -14,9 +14,8 @@ const useStyles = makeStyles({
     minHeight: 300,
     '&:hover':{
       transform:'translateY(-2px)',
-      boxShadow:'inset 0 4px 7px 1px #ffffff, inset 0 -5px 20px rgb(173 186 204 / 25%), 0 0 20px rgb(0 21 64 / 14%), 0 0 40px rgb(0 0 0 / 20%)',
-      
     },
+    boxShadow:' rgba(0, 0, 0, 0.06) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 2px 6px 0px, rgba(0, 0, 0, 0.09) 0px 3px 8px 0px',
     transition: 'all 0.2s ease-in-out 0s',
     cursor: 'pointer',
   },
@@ -29,7 +28,7 @@ export default function Category({category}) {
       <CardActionArea>
         <CardMedia
           className={classes.media}
-          image="/static/images/cards/contemplative-reptile.jpg"
+          image="/static"
           title="Contemplative Reptile"
         />
         <CardContent>

@@ -27,7 +27,6 @@ const useStyles = makeStyles((theme) => ({
   footer: {
     flexGrow: 1,
     backgroundColor: '#f5f5f5',
-    marginTop: '40px',
   }
 }));
 

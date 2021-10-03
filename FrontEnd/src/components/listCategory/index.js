@@ -51,10 +51,8 @@ export default function ListCategory() {
         }}
         open={isMobileMenuOpen}
         onClose={handleMobileMenuClose}
-        list
       > 
         <MenuItem 
-          disabledItemsFocusable='true'
           sx={{textAlign: 'center', cursor: 'default', color:"#3f51b5", fontSize: 20}}>
             Danh sách chủ đề 
         </MenuItem> 
@@ -70,7 +68,6 @@ export default function ListCategory() {
           {categories.map((item,index) => ( 
             <MenuItem
               onClick={handleListItemClick}
-              button
               selected={selectedIndex === index}
               key={index}
              sx={{paddingLeft: '30px',fontSize: 18}}

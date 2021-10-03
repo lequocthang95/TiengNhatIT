@@ -13,6 +13,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -45,16 +46,16 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignIn() {
   const classes = useStyles();
- 
+  
   const [labelType,setLabelType] = useState('password')
   const handleShowPassword = ()=>{
     labelType === 'password'? setLabelType('text') : setLabelType('password') ;
     
   }
-
+  let history = useHistory();
   const [details,setDetails] = useState({email: '', password:''})
   const handleSingIn = (e) =>{
-    e.preventDefault();
+    history.push("/");
     console.log(details)
   }
 
