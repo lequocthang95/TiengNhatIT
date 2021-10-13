@@ -34,6 +34,15 @@ class ApiController extends Controller
         	'password' => bcrypt($request->password)
         ]);
 
+        // Send email registration
+        // Tuyen
+        $details = [
+            'title' => 'Registration Verify',
+            'body' => 'Test registration email'
+        ];
+       
+        \Mail::to($request->email)->send(new \App\Mail\RegistrationMail($details));
+
         //User created, return success response
         return response()->json([
             'success' => true,
