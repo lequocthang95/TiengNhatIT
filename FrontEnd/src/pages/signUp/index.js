@@ -13,6 +13,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
+import { useHistory } from "react-router-dom";
+
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -50,11 +52,25 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
+
+
 export default function SignUp() {
+  function validation(firstName,lastName,email,password){
+    if (!firstName || !lastName || !email || !password) {return false;}
+    else {return true}
+  }
   const classes = useStyles();
   const [labelType,setLabelType] = useState('password')
   const handleShowPassword = ()=>{
     labelType === 'password'? setLabelType('text') : setLabelType('password') ;
+    
+  }
+  const [details,setDetails] = useState({firstName:'',lastName:'',email: '', password:''})
+  let history = useHistory();
+  function handleSingIn(e) {
+    if (validation(details.firstName,details.lastName,details.email,details.password)===false) {console.log(details);}
+   
+    validation !== true ? e.preventDefault() : history.push("/dangnhap");
     
   }
 
@@ -68,7 +84,7 @@ export default function SignUp() {
         <Typography component="h1" variant="h5">
           Đăng ký
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} onSubmit={handleSingIn} noValidate>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField
@@ -80,6 +96,8 @@ export default function SignUp() {
                 id="firstName"
                 label="First Name"
                 autoFocus
+                onChange={e => setDetails({...details,firstName:e.target.value})}
+                value={details.firstName}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -91,6 +109,8 @@ export default function SignUp() {
                 label="Last Name"
                 name="lastName"
                 autoComplete="lname"
+                onChange={e => setDetails({...details,lastName:e.target.value})}
+                value={details.lastName}
               />
             </Grid>
             <Grid item xs={12}>
@@ -102,6 +122,8 @@ export default function SignUp() {
                 label="Email Address"
                 name="email"
                 autoComplete="email"
+                onChange={e => setDetails({...details,email:e.target.value})}
+                value={details.email}
               />
               {labelType === 'password' ? <VisibilityIcon className={classes.icon} onClick={handleShowPassword} /> : <VisibilityOffIcon  className={classes.icon} onClick={handleShowPassword} /> }
             </Grid>
@@ -115,6 +137,8 @@ export default function SignUp() {
                 type={labelType}
                 id="password"
                 autoComplete="current-password"
+                onChange={e => setDetails({...details,password:e.target.value})}
+                value={details.password}
               />
             </Grid>
             <Grid className={classes.row} item xs={12} >

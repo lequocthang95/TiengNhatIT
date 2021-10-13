@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles} from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import { Container,Typography,Button,CardMedia,Link, } from '@material-ui/core';
+import { Container,Typography,CardMedia,Link, } from '@mui/material';
+import Button from '@material-ui/core/Button';
 import Categories from '../../components/categories';
 
 const useStyles = makeStyles((theme) => ({
   header: {
     marginTop: '30px',
-    backgroundColor: '#f5f5f5',
+    
     minHeight: '420px',
     display: 'flex',
     alignItems: 'center',
@@ -17,12 +18,6 @@ const useStyles = makeStyles((theme) => ({
   title: {
     marginBottom: '20px'
   }, 
-  list: {
-    padding: '15px',
-  },
-  solgan:{
-    fontFamily: 'Great Vibes, cursive',
-  },
   footer: {
     width: '80%',  
     borderTop:'1px solid rgba(0,0,0,0.5)',
@@ -38,20 +33,22 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
+
 export default function HomePage() {
   const [button1,setButton1] =useState('outlined')
   const [button2,setButton2] =useState('contained')
   const classes = useStyles();
+  
 
   return (
     <Container>
       <Grid container className={classes.header} spacing={3}>
         <Grid item md={7} xs={12} style={{padding: '20px',}}>
           <Typography variant="h3" className={classes.title}>Tiếng Nhật trong lĩnh vực IT</Typography>
-          <Typography variant="h4" className={classes.solgan} color="primary" >
+          <Typography variant="h4" color="primary" sx={{fontFamily: 'Great Vibes, cursive'}} >
             Chủ đề đa dạng! Bài viết hữu ích!
           </Typography>
-          <Typography variant="h4" className={classes.solgan} color="primary" >
+          <Typography variant="h4" color="primary" sx={{fontFamily: 'Great Vibes, cursive'}} >
             Cộng đồng gắn kết! Từ vựng phong phú!
           </Typography>
           <Typography variant="h5" style={{marginTop: '10px'}}>
@@ -69,17 +66,17 @@ export default function HomePage() {
           </div>
         </Grid>
         <Grid item md={5} xs={12}>  
-          <CardMedia
-            component="img"
-            alt="head homePage"
-            image="/static/images/homePage/header.jpg"
-          />
+        <CardMedia
+          component="img"
+          alt="head homePage"
+          image="/static/images/homePage/header.jpg"
+        />
         </Grid>
       </Grid>
       <Grid container style={{display: 'flex', justifyContent: 'center', height: '100px', marginTop: '20px', alignItems: 'center'}}>
         <Typography variant="h4" className={classes.title}>Chủ đề </Typography>
       </Grid>
-      <Grid container style={{backgroundColor: '#f5f5f5', flexWrap:'wrap'}} spacing={2}>
+      <Grid container spacing={2}>
         <Categories/>  
       </Grid>
       <Grid container style={{display:'flex',alignItems: 'center',justifyContent: 'center'}}>
@@ -88,11 +85,13 @@ export default function HomePage() {
           <Typography variant="h6" style={{color:'rgba(0, 0, 0, 0.54)'}}>Chúng tôi rất vui mừng và trân trọng sự giúp đỡ từ các đơn vị!</Typography>
           <div className={classes.logos}></div>
           <Typography variant="h5">Bạn muốn trở thành nhà tài trợ cho Team2 IT ?</Typography>
-          <Button variant={button1} color="primary" 
-            style={{marginTop: '10px'}}
-            onMouseOver={ e => {setButton1('contained')}}
-            onMouseOut={e => {setButton1('outlined')}}
-          >Liên hệ với chúng tôi</Button>
+          <Link href="/lienhe" underline="none">
+            <Button variant={button1} color="primary" 
+              style={{marginTop: '10px'}}
+              onMouseOver={ e => {setButton1('contained')}}
+              onMouseOut={e => {setButton1('outlined')}}
+            >Liên hệ với chúng tôi</Button>
+          </Link>
         </div> 
       </Grid>
     </Container>

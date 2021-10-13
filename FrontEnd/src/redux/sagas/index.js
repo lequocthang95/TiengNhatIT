@@ -1,20 +1,22 @@
-import { takeLatest, call, put } from 'redux-saga/effects';
-import * as actions from '../action/category';
 import * as api from '../api';
+import { takeLatest, call, put } from 'redux-saga/effects';
+import * as actionsCategories from '../action/categories';
 
 function* showCategories(action) {
   try {
     const categories = yield call(api.fetchCategories);
-    yield put(actions.getCategories.getCategoriesSuccess(categories.data));
+    yield put(actionsCategories.getCategories.getCategoriesSuccess(categories.data));
   } 
   catch (err) {
     console.error(err);
-    yield put(actions.getCategories.getCategoriesFailure(err));
+    yield put(actionsCategories.getCategories.getCategoriesFailure(err));
   }
 }
 
+
+
 function* RootSagas() {
-  yield takeLatest(actions.getCategories.getCategoriesRequest, showCategories);
+  yield takeLatest(actionsCategories.getCategories.getCategoriesRequest, showCategories);
 }
 
 export default RootSagas;

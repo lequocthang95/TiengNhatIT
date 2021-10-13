@@ -237,26 +237,26 @@ export default function Header() {
             </Typography>
           </Link>
           <div className={classes.menuDesktop}>
-            <MenuItem>
-              <Link className={selectedType==='homepage' ? classes.selected : ''}
-                onClick = {() => setSelectedType('homepage')} to="/">
-                  Trang chủ
-              </Link>
-            </MenuItem>
-            <MenuItem>
-              <Link className={selectedType==='community' ? classes.selected : ''}
-                onClick = {() => setSelectedType('community')}
-                to="/congdong">
-                  Cộng Đồng
-              </Link>
-            </MenuItem>
-            <MenuItem>
-              <Link className={selectedType==='blogs' ? classes.selected : ''}
-                onClick = {() => setSelectedType('blogs')}
-                to="/baiviet">
-                  Bài viết
-              </Link>
-            </MenuItem>
+            <Link className={selectedType==='homepage' ? classes.selected : ''}
+              onClick = {() => setSelectedType('homepage')} to="/">
+              <MenuItem>
+                Trang chủ
+              </MenuItem>
+            </Link>
+            <Link className={selectedType==='community' ? classes.selected : ''}
+              onClick = {() => setSelectedType('community')}
+              to="/congdong">
+              <MenuItem>
+                Cộng Đồng
+              </MenuItem>
+            </Link>   
+            <Link className={selectedType==='blogs' ? classes.selected : ''}
+              onClick = {() => setSelectedType('blogs')}
+              to="/baiviet">
+              <MenuItem>
+                Bài viết
+              </MenuItem>
+            </Link>
           </div>
           <div className={classes.menuMobile}>
             <IconButton

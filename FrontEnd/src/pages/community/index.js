@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import { Container, makeStyles, Button,Link, Grid, Avatar} from '@material-ui/core';
-import OurTeam from '../../components/cards/ourteamCards/ourTeam';
-import Carousel, { Dots, autoplayPlugin,slidesToShowPlugin,} from "@brainhubeu/react-carousel";
-import "@brainhubeu/react-carousel/lib/style.css";
-import { Box, Tabs, Tab, Typography } from '@mui/material';
+import { Container, makeStyles } from '@material-ui/core';
+import Posts from '../../components/posts';
+import { Box, Tabs, Tab, Typography, Button,Link, Grid } from '@mui/material';
 import PropTypes from 'prop-types';
+import SlickUser from '../../components/slickUsers'
 
 const useStyles = makeStyles((theme) => ({
     header: { 
@@ -33,7 +32,7 @@ function TabPanel(props) {
       >
         {value === index && (
           <Box sx={{ p: 3 }}>
-            <Typography>{children}</Typography>
+            {children}
           </Box>
         )}
       </div>
@@ -52,96 +51,38 @@ function TabPanel(props) {
       'aria-controls': `simple-tabpanel-${index}`,
     };
   }
-export default function Community() {
+export default function Community({isLogin}) {
     const classes=useStyles();
-    const [current, setCurrent] = useState(0);
     const [value, setValue] = React.useState(0);
+    const [title, setTitle] = React.useState('Tất cả câu hỏi');
+   
     const handleChange = (event, newValue) => {
         setValue(newValue);
     }
+    const [button1,setButton1] =useState('outlined')
+    console.log(isLogin)
+  
     return (
         <Container>
             <div className={classes.header}>
                 <div>
-                <Typography variant="h4">Hãy cùng với chúng tôi tạo nên một cộng đồng gắn kết.</Typography>
-                <Typography variant="h6" style={{color:'rgba(0,0,0,0.54)'}}>Ở đây, bạn có thể đặt câu hỏi cho mọi người về các vấn đề
-                    tiếng Nhật. Bạn có thể giúp đỡ người khác giải quyết vấn đề. Bạn cũng có thể chia sẽ những hiểu biết, kinh nghiệm 
-                    của mình. Chúng tôi rất vui mừng và trân trọng những đóng góp của bạn!
-                </Typography> 
-                <Button variant='outlined' color="primary"
-                    style={{marginTop: '10px'}}
-                >
-                    <Link href="/dangnhap" underline="none">Đăng Nhập</Link>
-                </Button>
+                    <Typography variant="h4">Hãy cùng với chúng tôi tạo nên một cộng đồng gắn kết.</Typography>
+                    <Typography variant="h6" style={{color:'rgba(0,0,0,0.54)'}}>Ở đây, bạn có thể đặt câu hỏi cho mọi người về các vấn đề
+                        tiếng Nhật. Bạn có thể giúp đỡ người khác giải quyết vấn đề. Bạn cũng có thể chia sẽ những hiểu biết, kinh nghiệm 
+                        của mình. Chúng tôi rất vui mừng và trân trọng những đóng góp của bạn!
+                    </Typography> 
+                    <Link href="/dangnhap" underline="none">
+                      <Button variant={button1} color="primary"
+                          onMouseOver={ e => {setButton1('contained')}}
+                          onMouseOut={e => {setButton1('outlined')}} style={{ marginTop: '20px'}}
+                      >
+                          Đăng Nhập
+                      </Button>
+                    </Link>
                 </div>
-                <div style={{marginTop: '30px',paddingLeft: '20px'}}>
+                <div style={{marginTop: '30px'}}>
                     <Grid container>
-                        <Carousel 
-                            value={current}  
-                            onChange={setCurrent}                        
-                            plugins={[
-                                'infinite',
-                                {   
-                                    resolve: slidesToShowPlugin,
-                                    options: {
-                                        numberOfSlides: 6,
-                                    }
-                                },
-                                {   
-                                    resolve: autoplayPlugin,
-                                    options: {
-                                        interval: 2000, 
-                                    }
-                                }
-                            ]}          
-                            breakpoints={{
-                                    640: {
-                                        plugins:[
-                                            'infinite',
-                                            {   
-                                                resolve: slidesToShowPlugin,
-                                                options: {
-                                                    numberOfSlides: 1, 
-                                                }
-                                            },
-                                            {   
-                                                resolve: autoplayPlugin,
-                                                options: {
-                                                    interval: 2000, 
-                                                }
-                                            }
-                                        ]
-                                    },
-                                    900: {
-                                        plugins:[
-                                            'infinite',
-                                            {   
-                                                resolve: slidesToShowPlugin,
-                                                options: {
-                                                    numberOfSlides: 3,                                                    
-                                                }
-                                            },
-                                            {   
-                                                resolve: autoplayPlugin,
-                                                options: {
-                                                    interval: 2000, 
-                                                    stopAutoPlayOnHover: true,
-                                                }
-                                            }
-                                        ]
-                                    },
-                                }}
-                            animationSpeed={500} 
-                            autoPlay={2000}                     
-                        > 
-                            {OurTeam.map((infor) => (<Grid item key={infor.name} md={2} lg={12} style={{display: 'flex',alignItems: 'center'}}>
-                            <Avatar src={infor.avatar} key={infor.name} />
-                            <Typography variant='h6' style={{marginLeft: '10px'}}>{infor.name}</Typography>
-                            </Grid>))} 
-                        </Carousel>
-                        <div style={{display: 'flex',width: '100%',justifyContent: 'center', marginTop: '10px'}}>
-                            <Dots value={current} onChange={setCurrent} number={6} />
-                        </div>
+                      <SlickUser />
                     </Grid>
                     <Typography variant='h5'>Xin cám ơn sự đóng góp tích cực từ các bạn!</Typography>
                 </div>
@@ -151,21 +92,32 @@ export default function Community() {
             </div>
             <div className={classes.body}>
                 <Box sx={{ width: '100%' }}>
-                    <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                    <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-                        <Tab label="Item One" {...a11yProps(0)} />
-                        <Tab label="Item Two" {...a11yProps(1)} />
-                        <Tab label="Item Three" {...a11yProps(2)} />
-                    </Tabs>
+                    <Box sx={{ borderBottom: 1, borderColor: 'divider', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding:'20px'}}>  
+                        <Grid container >
+                          <Grid item md={6} xs={12}>
+                            <Tabs value={value} onChange={handleChange}>
+                                <Tab label="all" {...a11yProps(0)} onClick= {() =>{setTitle('Tất cả câu hỏi')}}/>
+                                <Tab label="new" {...a11yProps(1)} onClick= {() =>{setTitle('Câu hỏi mới nhất')}}/>
+                                <Tab label="popular" {...a11yProps(2)} />
+                            </Tabs>
+                          </Grid>
+                          <Grid item md={6}  sx={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}} 
+                            xs={12}>
+                            <Typography variant="h5" color="primary">{title}</Typography>
+                            <Link href="/congdong/ask" underline="none">
+                                <Button variant="contained" disabled={isLogin===true ? false : true} >Đặt câu hỏi</Button>
+                            </Link>
+                          </Grid>
+                        </Grid>
                     </Box>
                     <TabPanel value={value} index={0}>
-                    Item One
+                      <Posts/>
                     </TabPanel>
                     <TabPanel value={value} index={1}>
-                    Item Two
+                        Item Two
                     </TabPanel>
                     <TabPanel value={value} index={2}>
-                    Item Three
+                        Item Three
                     </TabPanel>
                 </Box>
             </div> 
