@@ -1,7 +1,9 @@
-import * as React from 'react';
+import React, { useEffect } from 'react';
+import axios from 'axios'
+import { useParams } from 'react-router';
 import PropTypes from 'prop-types';
 import { useTheme } from '@mui/material/styles';
-import { Box, Container, Typography } from '@mui/material';
+import { Box, Container, Link } from '@mui/material';
 import Table from '@mui/material/Table';
 import TableHead from '@mui/material/TableHead';
 import TableBody from '@mui/material/TableBody';
@@ -17,22 +19,19 @@ import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
 
+
 function TablePaginationActions(props) {
   const theme = useTheme();
   const { count, page, rowsPerPage, onPageChange } = props;
-
   const handleFirstPageButtonClick = (event) => {
     onPageChange(event, 0);
   };
-
   const handleBackButtonClick = (event) => {
     onPageChange(event, page - 1);
   };
-
   const handleNextButtonClick = (event) => {
     onPageChange(event, page + 1);
   };
-
   const handleLastPageButtonClick = (event) => {
     onPageChange(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
   };
@@ -120,28 +119,40 @@ const rows = [
   createData('Oreo', 437, 18.0),
 ].sort((a, b) => (a.calories < b.calories ? -1 : 1));
 
-export default function Vocabularies({name}) {
+export default function Vocabularies() {
+  const { _id } = useParams();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
-
-  // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
-
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
-
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
-  console.log(name)
+  const [vocabulariesData, setVocabulariesData] = React.useState('');
+ 
+  useEffect(() => {
+    const URL='http://127.0.0.1:5000';
+    const getData = async () => {
+      try {
+          const response = await 
+          axios.get(`${URL}/user/${_id}`);
+          setVocabulariesData(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    getData();
+  }, [_id]);
+  console.log(vocabulariesData);
+
   return (
     <div style={{minHeight: '580px'}}>
     <Container>
-        <Typography variant='h4' sx={{marginTop: '30px'}}>{name}</Typography>
-        <TableContainer component={Paper}>
+      <TableContainer component={Paper}>
         <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
             <TableHead>
                 <TableRow>
@@ -157,22 +168,17 @@ export default function Vocabularies({name}) {
                 </TableRow>
             </TableHead>
             <TableBody>
-            {(rowsPerPage > 0
-                ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                : rows
-            ).map((row) => (
-                <TableRow key={row.name}>
+                <TableRow>
                 <TableCell align="center">
-                    {row.name}
+                    <Link href="/tuvung/:_id" underline="none" sx={{cursor: 'pointer'}}>{vocabulariesData.name}</Link>
                 </TableCell>
                 <TableCell align="center">
-                    {row.furigana}
+                 {vocabulariesData.email}
                 </TableCell>
                 <TableCell align="center">
-                    {row.meaning}
+                {vocabulariesData._id}
                 </TableCell>
                 </TableRow>
-            ))}
 
             {emptyRows > 0 && (
                 <TableRow style={{ height: 53 * emptyRows }}>

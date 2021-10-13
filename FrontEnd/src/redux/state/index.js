@@ -3,12 +3,13 @@ export const INIT_STATE = {
       isLoading: false,
       data: [],
     },
+    CategoryData: {
+      isLoading: true,
+      data: {},
+    },
     postsData: {
       isLoading: false,
       data: [],
     },
-    user: {
-      isLoading: false,
-      data: [],
-    },
+    
 }

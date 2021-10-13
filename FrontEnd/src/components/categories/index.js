@@ -1,14 +1,13 @@
 import React from 'react';
-import { Grid, Link } from '@material-ui/core';
+import { Link } from 'react-router-dom'
+import { Grid } from '@material-ui/core';
 import Category from './category';
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete';
 import ListCategory from '../listCategory';
-// import { useDispatch, useSelector } from 'react-redux';
-// import * as actions from '../../redux/action/category';
-// import { categoriesState$ } from '../../redux/selectors';
 
+// import { categoriesState$ } from '../../redux/selectors';
 
 const filter = createFilterOptions();
 const test=[
@@ -39,13 +38,8 @@ const test=[
 ]
 
 export default function Categories() {
-  // const dispatch = useDispatch();
-  // const categories = useSelector(categoriesState$);
-  // React.useEffect(() => {
-  //   dispatch(actions.getCategories.getCategoriesRequest());
-  // }, [dispatch]);
   const [value, setValue] = React.useState(null);
-
+ 
   return (
     <div>
       <Grid container style={{ alignItems: 'center'}}>
@@ -118,8 +112,9 @@ export default function Categories() {
           <Grid item lg={4} md={11} style={{padding: '10px'}} >
             <Category category={value} />
           </Grid>
-          : test.map((category) => (<Grid item style={{padding: '10px'}} lg={4} md={6} key={category._id}>
-            <Link href={`/chude/${category.name}`} underline='none' ><Category category={category} nameCategory={category.name} /></Link>
+          : test.map((category) => (<Grid item style={{padding: '10px'}} lg={4} md={6} key={category._id} 
+          >
+            <Link to={`/chude/${category._id}`}><Category category={category} nameCategory={category.name} /></Link>
           </Grid>))} 
       </Grid>
     </div>

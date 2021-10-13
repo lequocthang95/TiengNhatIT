@@ -12,17 +12,17 @@ import About from './pages/about';
 import Conditions from './pages/conditions';
 import Contacts from './pages/contacts'
 import CreatePost from './pages/community/creatPost'
-import Vocabularies from './components/vocabularies'
+import Vocabularies from './pages/vocabularies';
+
 
 function App() {
   const Login= true;
-  
   return (
     <BrowserRouter>
       <Header />
         <Switch>
-          <Route path="/" component={HomePage} exact></Route>
-          <Route path="/chude"><Vocabularies/></Route>
+          <Route path="/" exact><HomePage/></Route>
+          <Route path={`/chude/:_id`}><Vocabularies/></Route>
           <Route path="/congdong/ask" exact><CreatePost /></Route>
           <Route path="/congdong"> <Community isLogin={Login} /></Route>
           <Route path="/baiviet" component={Blogs}></Route>

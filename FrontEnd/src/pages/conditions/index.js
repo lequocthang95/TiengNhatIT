@@ -1,7 +1,6 @@
 import React from 'react';
 import { Container, Grid, makeStyles, Typography,Box, Button } from '@material-ui/core';
 import { Link } from 'react-router-dom'
-
 const useStyles = makeStyles({
     root: {
         margin: 0,
@@ -57,10 +56,12 @@ const useStyles = makeStyles({
 })
 
 export default function Conditions() {
+
     const classes = useStyles();
     return (
         <div className={classes.root}>
            <Container>
+           
             <div className={classes.page}>
                 <div className={classes.head}>
                     <Typography className={classes.headInner} variant="h3">Chính sách, điều khoản.</Typography>

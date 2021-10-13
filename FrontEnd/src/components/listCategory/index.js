@@ -2,7 +2,7 @@ import * as React from 'react';
 import { MenuList, MenuItem, Menu, IconButton} from '@mui/material';
 import ViewListIcon from '@mui/icons-material/ViewList';
 import { useDispatch, useSelector } from 'react-redux';
-import * as actions from '../../redux/action/category';
+import * as actions from '../../redux/action/categories';
 import { categoriesState$ } from '../../redux/selectors';
 
 export default function ListCategory() {

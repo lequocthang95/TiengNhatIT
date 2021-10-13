@@ -1,5 +1,5 @@
-import { getCategories, getType, } from '../action/category';
-import { INIT_STATE } from '../action/actionTypes';
+import { getCategories, getType, } from '../action/categories';
+import { INIT_STATE } from '../state';
 
 export default function Categories(state = INIT_STATE.categoriesData, action) {
   switch (action.type) {

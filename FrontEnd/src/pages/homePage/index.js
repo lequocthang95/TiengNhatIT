@@ -33,10 +33,12 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
+
 export default function HomePage() {
   const [button1,setButton1] =useState('outlined')
   const [button2,setButton2] =useState('contained')
   const classes = useStyles();
+  
 
   return (
     <Container>
@@ -64,11 +66,11 @@ export default function HomePage() {
           </div>
         </Grid>
         <Grid item md={5} xs={12}>  
-          <CardMedia
-            component="img"
-            alt="head homePage"
-            image="/static/images/homePage/header.jpg"
-          />
+        <CardMedia
+          component="img"
+          alt="head homePage"
+          image="/static/images/homePage/header.jpg"
+        />
         </Grid>
       </Grid>
       <Grid container style={{display: 'flex', justifyContent: 'center', height: '100px', marginTop: '20px', alignItems: 'center'}}>
