@@ -10,7 +10,7 @@ use Laravel\Sanctum\HasApiTokens;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
 
-class User extends \TCG\Voyager\Models\User implements JWTSubject
+class User extends \TCG\Voyager\Models\User implements JWTSubject, MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -66,4 +66,6 @@ class User extends \TCG\Voyager\Models\User implements JWTSubject
     {
         return $this->hasMany(Product::class);
     }
+
+    
 }
