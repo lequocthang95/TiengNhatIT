@@ -14,10 +14,8 @@ import Container from '@material-ui/core/Container';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 import { useHistory } from "react-router-dom";
-import { useDispatch, useSelector } from 'react-redux';
-import * as actions from '../../redux/actions/account';
-import { accountState$ } from '../../redux/selectors';
 import axios from 'axios';
+import * as api from '../../redux/api'
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -96,6 +94,10 @@ export default function SignUp() {
       setNameError('Vui long nhập đầy đủ!')
     }
     else{
+      const regex = /^[a-zA-Z0-9]+$/;
+      if (regex.test(details.name) === false){
+        setNameError('Tên đăng ký không hợp lệ!')
+      } 
       if (details.name.length < 3){
         setNameError('Vui long nhập ít nhất 3 ký tự!')
       }
@@ -116,6 +118,10 @@ export default function SignUp() {
       if (details.password.length < 6){
         setPasswordError('Vui long nhập ít nhất 6 ký tự!')
       }
+      const regex = /^[a-zA-Z0-9]+$/;
+      if (regex.test(details.password) === false){
+        setPasswordError('Mật khẩu không hợp lệ!')
+      } 
     }
     if (details.password2===''){
       setPassword2Error('Vui long nhập đầy đủ!')
@@ -129,42 +135,43 @@ export default function SignUp() {
     else{return true}
   }
 
-  const dispatch = useDispatch();
-  const account = useSelector(accountState$);
   const [details,setDetails] = useState({name:'',email: '', password:'',password2: '',})
   let history = useHistory();
-  const [errorMessage,setErrorMessage] = useState('')
+  const [resErrorEmail,setResErrorEmail] = useState('')
+  const [resErrorName,setResErrorName] = useState('')
 
-  // const trySignup = async (values) => {
-  //   const URL='http://127.0.0.1:8000';
-  //   try {
-  //     const response = await axios.post(`${URL}/api/register`, details)
-  //     console.log(response.data.success);
-      
-
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
-  const handleSingIn = React.useCallback((e) => { 
+  const trySignup = async () => {
+    setResErrorEmail('')
+    setResErrorName('')
+    try {
+      const response = await axios({
+        method: "post",
+        url: `${api.URL}/api/register`,
+        data: details,
+      })
+      if (response.data.error){
+        setResErrorEmail(response.data.error.email[0])
+        setResErrorEmail(response.data.error.name[0])
+      }
+      else {
+        history.push('/dangnhap')
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  const handleSignUp = (e)=>{
+    setResErrorEmail('')
+    setResErrorEmail('')
     if (validation(details)===false|| !details.name || !details.email || !details.password || !details.password2) {
       e.preventDefault();
-      console.log('loi')
     }
-    else{
-      dispatch(actions.createAccount.createAccountRequest(details))
-      e.preventDefault();
-     }
-    if (!account.error){
-       dispatch(actions.createAccount.createAccountRequest(details))
-      console.log('account.error')
-     }
-     else {
-      e.preventDefault();
-       setErrorMessage(account.error.email[0])
-     }
-  }, [dispatch,details]);
-  
+    else {
+      trySignup()
+      e.preventDefault()
+    }
+  }
+
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -188,6 +195,7 @@ export default function SignUp() {
                 value={details.name}
               />
               <Typography variant="subtitle2" className={classes.errorMessage}>{nameError}</Typography>
+              <Typography variant="subtitle2" className={classes.errorMessage}>{resErrorName}</Typography>
             </Grid>
             <Grid item xs={12} className={classes.input}>
               <TextField
@@ -200,7 +208,7 @@ export default function SignUp() {
                 value={details.email}
               />
               <Typography variant="subtitle2" className={classes.errorMessage}>{emailError}</Typography>
-              <Typography variant="subtitle2" className={classes.errorMessage}>{errorMessage}</Typography>
+              <Typography variant="subtitle2" className={classes.errorMessage}>{resErrorEmail}</Typography>
             </Grid>
             <Grid item xs={12} className={classes.input}>
             {labelType === 'password' ? <VisibilityIcon className={classes.icon} onClick={handleShowPassword} /> : <VisibilityOffIcon  className={classes.icon} onClick={handleShowPassword} /> }
@@ -239,12 +247,12 @@ export default function SignUp() {
             </Grid>
           </Grid>
           <Button
-            type="button"
+            type="submit"
             fullWidth
             variant="contained"
             color="primary"
             className={classes.submit}
-            onClick={handleSingIn }
+            onClick={handleSignUp }
           >
             Đăng ký tài khoản
           </Button>
