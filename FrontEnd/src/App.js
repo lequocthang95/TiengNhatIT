@@ -5,7 +5,7 @@ import Footer from './components/footer';
 import HomePage from './pages/homePage';
 import Community from './pages/community';
 import Blogs from './pages/blogs';
-import SignIn from './pages/signIn';
+import LogIn from './pages/logIn';
 import SignUp from './pages/signUp';
 import NotFound from './pages/notFound';
 import About from './pages/about';
@@ -26,7 +26,7 @@ function App() {
           <Route path="/congdong/ask" exact><CreatePost /></Route>
           <Route path="/congdong"> <Community isLogin={Login} /></Route>
           <Route path="/baiviet" component={Blogs}></Route>
-          <Route path="/dangnhap" component={SignIn}></Route>
+          <Route path="/dangnhap" component={LogIn}></Route>
           <Route path="/dangky" component={SignUp}></Route>
           <Route path="/gioithieu"><About/></Route>
           <Route path="/dieukhoan"><Conditions/></Route>

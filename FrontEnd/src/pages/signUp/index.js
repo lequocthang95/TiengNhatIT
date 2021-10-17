@@ -118,6 +118,9 @@ export default function SignUp() {
       if (details.password.length < 6){
         setPasswordError('Vui long nhập ít nhất 6 ký tự!')
       }
+      if (details.password.length > 50){
+        setPasswordError('Vui long nhập tối đa 50 ký tự!')
+      }
       const regex = /^[a-zA-Z0-9]+$/;
       if (regex.test(details.password) === false){
         setPasswordError('Mật khẩu không hợp lệ!')
@@ -138,20 +141,19 @@ export default function SignUp() {
   const [details,setDetails] = useState({name:'',email: '', password:'',password2: '',})
   let history = useHistory();
   const [resErrorEmail,setResErrorEmail] = useState('')
-  const [resErrorName,setResErrorName] = useState('')
 
   const trySignup = async () => {
     setResErrorEmail('')
-    setResErrorName('')
+  
     try {
       const response = await axios({
         method: "post",
         url: `${api.URL}/api/register`,
         data: details,
       })
-      if (response.data.error){
+      if (response.data.error.email){
         setResErrorEmail(response.data.error.email[0])
-        setResErrorEmail(response.data.error.name[0])
+        console.log(response.data.error)
       }
       else {
         history.push('/dangnhap')
@@ -161,7 +163,6 @@ export default function SignUp() {
     }
   }
   const handleSignUp = (e)=>{
-    setResErrorEmail('')
     setResErrorEmail('')
     if (validation(details)===false|| !details.name || !details.email || !details.password || !details.password2) {
       e.preventDefault();
@@ -195,7 +196,6 @@ export default function SignUp() {
                 value={details.name}
               />
               <Typography variant="subtitle2" className={classes.errorMessage}>{nameError}</Typography>
-              <Typography variant="subtitle2" className={classes.errorMessage}>{resErrorName}</Typography>
             </Grid>
             <Grid item xs={12} className={classes.input}>
               <TextField
