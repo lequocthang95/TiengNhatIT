@@ -9,13 +9,13 @@ import Badge from '@material-ui/core/Badge';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import MenuIcon from '@material-ui/icons/Menu';
-import SearchIcon from '@material-ui/icons/Search';
+import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import MailIcon from '@material-ui/icons/Mail';
+import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import Button from '@material-ui/core/Button';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import PostAddIcon from '@material-ui/icons/PostAdd';
 import SettingsApplicationsIcon from '@material-ui/icons/SettingsApplications';
 import {  Link,} from 'react-router-dom';
@@ -321,20 +321,18 @@ export default function Header() {
           </div>
           ) : (
             <div>
-              <Button>
-                <Link className={selectedType==='signup' ? classes.selected : ''}
-                  onClick = {() => setSelectedType('signup')}
-                  to="/dangky">
-                    Đăng Ký
-                </Link>
-              </Button>
-              <Button>
-                <Link className={selectedType==='signin' ? classes.selected : ''}
-                  onClick = {() => setSelectedType('signin')}
-                  to="/dangnhap">
-                    Đăng Nhập
-                </Link>
-              </Button>
+              <Link to="/dangky">
+                <Button className={selectedType==='signup' ? classes.selected : ''}
+                  onClick = {() => setSelectedType('signup')}>  
+                    Đăng Ký 
+                </Button>
+              </Link>
+              <Link to="/dangnhap">
+                <Button className={selectedType==='signin' ? classes.selected : ''}
+                  onClick = {() => setSelectedType('signin')}>
+                  Đăng Nhập
+                </Button>
+              </Link>
             </div>
           )} 
         </Toolbar>

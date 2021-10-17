@@ -1,7 +1,6 @@
 import axios from 'axios'
 export const URL='http://127.0.0.1:8000';
 
-export const createAccount = (payload) =>  axios.post(`${URL}/api/register`, payload)
 export const fetchCategories = () => axios.get(`${URL}/users`);
 
 
