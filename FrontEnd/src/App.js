@@ -10,7 +10,7 @@ import SignUp from './pages/signUp';
 import NotFound from './pages/notFound';
 import About from './pages/about';
 import Conditions from './pages/conditions';
-import Contacts from './pages/contacts'
+import Contacts from './pages/contacts/index.jsx'
 import CreatePost from './pages/community/creatPost'
 import Vocabularies from './pages/vocabularies';
 
