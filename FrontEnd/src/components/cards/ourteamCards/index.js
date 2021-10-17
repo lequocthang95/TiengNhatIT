@@ -13,7 +13,7 @@ export default function OurTeamCards() {
   return (
     <div>
     <Grid container spacing={3}>            
-      {inforTeam.map((infor) => (<Grid item md={3} xs={6}><OneCard inforTeam={inforTeam} setInforTeam={setInforTeam} infor={infor}/></Grid>))}
+      {inforTeam.map((infor) => (<Grid item key={infor.name} md={3} xs={6}><OneCard inforTeam={inforTeam} setInforTeam={setInforTeam} infor={infor}/></Grid>))}
     </Grid>
     </div>
   )

@@ -1,12 +1,12 @@
-import React from 'react';
-import { Container } from '@material-ui/core';
 
-export default function Blogs() {
-    return (
-        <Container>
-            <div>
-                this is a post page
-            </div>
-        </Container>
-    )
+export default function Blog() {
+
+
+  return (
+    <div>
+      <div>
+        <label>Something Memorable</label>
+      </div>
+    </div>
+  );
 }
