@@ -233,7 +233,7 @@ export default function Header() {
         <Toolbar>
           <Link  onClick = {() => setSelectedType('')} to="/">
             <Typography className={classes.title} variant="h6" noWrap>
-              Team 2 IT
+              Tiếng Nhật IT
             </Typography>
           </Link>
           <div className={classes.menuDesktop}>

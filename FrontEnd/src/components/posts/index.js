@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import * as actions from '../../redux/action/posts';
+import * as actions from '../../redux/actions/posts';
 import { postsState$ } from '../../redux/selectors';
 import Post from '../../components/posts/post/index'
 import OurTeam from '../../components/cards/ourteamCards/ourTeam';

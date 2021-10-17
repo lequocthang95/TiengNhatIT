@@ -40,7 +40,7 @@ export default function Footer() {
           <Breadcrumbs aria-label="breadcrumb">
           <Link color="inherit" href="/"  className={classes.link}>
               <HomeIcon className={classes.icon} />
-              Team 2 IT
+              Tiếng Nhật IT
           </Link>
           <Link href="/gioithieu"
               color="inherit"
@@ -61,7 +61,7 @@ export default function Footer() {
               <Link href="/lienhe" color="inherit">Liên hệ</Link>
           </Typography>
           </Breadcrumbs>
-          <div>© 2021 Team 2 IT</div>
+          <div>© 2021 Tiếng Nhật IT</div>
       </Container>
     </div>
   );
