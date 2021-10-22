@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Auth\Events\Registered;
 
 class ApiController extends Controller
 {
@@ -40,8 +41,10 @@ class ApiController extends Controller
             'title' => 'Registration Verify',
             'body' => 'Test registration email'
         ];
+
+        event(new Registered($user));
        
-        \Mail::to($request->email)->send(new \App\Mail\RegistrationMail($details));
+        //\Mail::to($request->email)->send(new \App\Mail\RegistrationMail($details));
 
         //User created, return success response
         return response()->json([
