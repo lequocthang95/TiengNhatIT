@@ -37,27 +37,44 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
+  input: {
+    position: 'relative',
+    marginTop: '6px'
+  },
+  errorMessage: {
+    width:'100%',
+    position: 'absolute',
+    textAlign: 'center',
+    color: '#ff3d00',
+  },
   icon: {
     position: 'absolute',
+    zIndex:'100',
     color: 'rgb(186, 184, 184)',
-    top: '112px',
-    right: '10px',
+    top: '24px',
+    right: '15px',
     cursor: 'pointer',
-  }
+  },  
+  row:{
+    display: 'flex',
+    marginTop: '10px',
+  },
 }));
 
 export default function LogIn() {
-  const classes = useStyles();
-  
+  const classes = useStyles(); 
   const [labelType,setLabelType] = useState('password')
   const handleShowPassword = ()=>{
-    labelType === 'password'? setLabelType('text') : setLabelType('password') ;
-    
+    labelType === 'password'? setLabelType('text') : setLabelType('password') ;   
   }
   let history = useHistory();
   const [details,setDetails] = useState({email: '', password:''})
   const [resErrorEmail,setResErrorEmail] = useState('')
   const [resErrorPassword,setResErrorPassword] = useState('')
+  const [checked, setChecked] = React.useState(false);
+  const handleChange = (event) => {
+    setChecked(event.target.checked);
+  };
 
   const tryLogIn = async () => {
     setResErrorEmail('')
@@ -65,32 +82,36 @@ export default function LogIn() {
     try {
       const response = await axios({
         method: "post",
-        url: `${api.URL}/api/`,
+        url: `${api.URL}/api/login`,
         data: details,
       })
-      if (response.data.error){
-        setResErrorEmail(response.data.error.email[0])
-        setResErrorPassword(response.data.error.password[0]) 
+      if (response.data.message){
+        alert('response.data.message')
       }
       else {
-        history.push('/dangnhap')
+        history.push('/')
       }
-    } catch (error) {
+    } 
+    catch (error) {
       console.log(error);
     }
   }
   const handleLogIn = (e)=>{
     setResErrorEmail('')
-    setResErrorEmail('')
-    if (!details.name || !details.email) {
+    setResErrorPassword('')
+    if (!details.email) {
       e.preventDefault();
+      setResErrorEmail('Vui lòng nhập đầy đủ!')
     }
-    else {
+    if (!details.password) {
+      e.preventDefault();
+      setResErrorPassword('Vui lòng nhập đầy đủ!')
+    }
+    if (details.password && details.email) { 
       tryLogIn()
       e.preventDefault()
     }
   }
-
 
   return (
     <Container component="main" maxWidth="xs">
@@ -132,6 +153,8 @@ export default function LogIn() {
             </Grid>
             <Grid className={classes.row} item xs={12} >
               <FormControlLabel
+                checked={checked}
+                onChange={handleChange}
                 control={<Checkbox value="allowExtraEmails" color="primary" />}
                 label="" 
               />
