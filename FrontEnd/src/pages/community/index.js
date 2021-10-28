@@ -6,18 +6,25 @@ import PropTypes from 'prop-types';
 import SlickUser from '../../components/slickUsers'
 
 const useStyles = makeStyles((theme) => ({
-    header: { 
-      marginTop: '30px',
-      textAlign: 'center',
-    },
-    body: { 
-        minHeight: '1200px',
-        height: '100%',
-        border: '1px solid rgba(92,147,187,0.17)',
-        borderRadius: '7px',
-        backgroundColor: '#f5f5f5',
-        marginTop: '10px',  
-    }
+  page: {
+    margin: '30px 0 20px 0'
+  },
+  header: { 
+    padding: '20px',
+    border: '1px solid #d50000',
+    borderRadius: '5px',
+    textAlign: 'center',
+  },
+  headerContent: {
+    
+  },
+  body: { 
+      height: '100%',
+      border: '1px solid rgba(92,147,187,0.17)',
+      borderRadius: '7px',
+      backgroundColor: '#f5f5f5',
+      marginTop: '10px',  
+  }
 }))
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -63,9 +70,10 @@ export default function Community({isLogin}) {
     console.log(isLogin)
   
     return (
+      <div className={classes.page}>
         <Container>
             <div className={classes.header}>
-                <div>
+                <div className={classes.headerContent}>
                     <Typography variant="h4">Hãy cùng với chúng tôi tạo nên một cộng đồng gắn kết.</Typography>
                     <Typography variant="h6" style={{color:'rgba(0,0,0,0.54)'}}>Ở đây, bạn có thể đặt câu hỏi cho mọi người về các vấn đề
                         tiếng Nhật. Bạn có thể giúp đỡ người khác giải quyết vấn đề. Bạn cũng có thể chia sẽ những hiểu biết, kinh nghiệm 
@@ -82,7 +90,7 @@ export default function Community({isLogin}) {
                 </div>
                 <div style={{marginTop: '30px'}}>
                     <Grid container>
-                      <SlickUser />
+                      
                     </Grid>
                     <Typography variant='h5'>Xin cám ơn sự đóng góp tích cực từ các bạn!</Typography>
                 </div>
@@ -122,5 +130,6 @@ export default function Community({isLogin}) {
                 </Box>
             </div> 
         </Container>
+      </div>
     )
 }

@@ -1,6 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
-import { Grid } from '@material-ui/core';
+import { Grid } from '@mui/material';
 import Category from './category';
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
@@ -41,7 +40,7 @@ export default function Categories() {
   const [value, setValue] = React.useState(null);
  
   return (
-    <div>
+    <Grid container>
       <Grid container style={{ alignItems: 'center'}}>
         <Grid item md={4} xs={9} >
           <div>
@@ -107,16 +106,15 @@ export default function Categories() {
           <ListCategory/>
         </Grid>
       </Grid>
-      <Grid container >
+      <Grid container>
         {value ? 
-          <Grid item lg={4} md={11} style={{padding: '10px'}} >
+          <Grid item lg={4} md={6} style={{padding: '10px'}} >
             <Category category={value} />
           </Grid>
-          : test.map((category) => (<Grid item style={{padding: '10px'}} lg={4} md={6} key={category._id} 
-          >
-            <Link to={`/chude/${category._id}`}><Category category={category} nameCategory={category.name} /></Link>
+          : test.map((category) => (<Grid item style={{padding: '10px'}} lg={4} md={6} key={category._id}>
+            <Category category={category} nameCategory={category.name} />
           </Grid>))} 
       </Grid>
-    </div>
+    </Grid>
   )
 }

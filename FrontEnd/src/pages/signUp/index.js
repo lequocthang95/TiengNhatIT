@@ -16,8 +16,14 @@ import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 import { useHistory } from "react-router-dom";
 import axios from 'axios';
 import * as api from '../../redux/api'
+import BackgroundImage from '../../images/sigup/nen.jpg'
 
 const useStyles = makeStyles((theme) => ({
+  page: {
+    backgroundImage: `url(${BackgroundImage})`,
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: '100% 100%',
+  },
   paper: {
     marginTop: theme.spacing(1),
     display: 'flex',
@@ -157,7 +163,6 @@ export default function SignUp() {
       })
       if (response.data.error.email){
         setResErrorEmail(response.data.error.email[0])
-        console.log(response.data.error)
       }
       else {
         history.push('/dangnhap')
@@ -174,106 +179,109 @@ export default function SignUp() {
       }
       else {
         trySignup()
-        e.preventDefault()
+        console.log(resErrorEmail)
+        
       }
     }
     else {e.preventDefault();alert('Vui lòng đồng ý với điều khoản của Tiếng Nhật IT!')}
   }
 
   return (
-    <Container component="main" maxWidth="xs">
-      <CssBaseline />
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Đăng ký
-        </Typography>
-        <form className={classes.form} noValidate>
-          <Grid container spacing={2}>
-            <Grid item xs={12} className={classes.input}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                label="Họ và tên"
-                autoComplete="lname"
-                onChange={e => setDetails({...details,name:e.target.value})}
-                value={details.name}
-              />
-              <Typography variant="subtitle2" className={classes.errorMessage}>{nameError}</Typography>
+    <Container className={classes.page}>
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <div className={classes.paper}>
+          <Avatar className={classes.avatar}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Đăng ký
+          </Typography>
+          <form className={classes.form} noValidate>
+            <Grid container spacing={2}>
+              <Grid item xs={12} className={classes.input}>
+                <TextField
+                  variant="outlined"
+                  required
+                  fullWidth
+                  label="Họ và tên"
+                  autoComplete="lname"
+                  onChange={e => setDetails({...details,name:e.target.value})}
+                  value={details.name}
+                />
+                <Typography variant="subtitle2" className={classes.errorMessage}>{nameError}</Typography>
+              </Grid>
+              <Grid item xs={12} className={classes.input}>
+                <TextField
+                  variant="outlined"
+                  required
+                  fullWidth
+                  label="Địa chỉ email"
+                  autoComplete="email"
+                  onChange={e => setDetails({...details,email:e.target.value})}
+                  value={details.email}
+                />
+                <Typography variant="subtitle2" className={classes.errorMessage}>{emailError}</Typography>
+                <Typography variant="subtitle2" className={classes.errorMessage}>{resErrorEmail}</Typography>
+              </Grid>
+              <Grid item xs={12} className={classes.input}>
+              {labelType === 'password' ? <VisibilityIcon className={classes.icon} onClick={handleShowPassword} /> : <VisibilityOffIcon  className={classes.icon} onClick={handleShowPassword} /> }
+                <TextField
+                  variant="outlined"
+                  required
+                  fullWidth
+                  label="Mật khẩu"
+                  type={labelType}
+                  autoComplete="current-password"
+                  onChange={e => setDetails({...details,password:e.target.value})}
+                  value={details.password}
+                />
+                <Typography variant="subtitle2" className={classes.errorMessage}>{passwordError}</Typography>
+              </Grid>
+              <Grid item xs={12} className={classes.input}>
+              {labelType2 === 'password' ? <VisibilityIcon className={classes.icon2} onClick={handleShowPassword2} /> : <VisibilityOffIcon  className={classes.icon2} onClick={handleShowPassword2} /> }
+                <TextField
+                  variant="outlined"
+                  required
+                  fullWidth
+                  label="Xác nhận mật khẩu"
+                  type={labelType2}
+                  autoComplete="current-password"
+                  onChange={e => setDetails({...details,password2:e.target.value})}
+                  value={details.password2}
+                />
+                <Typography variant="subtitle2" className={classes.errorMessage}>{password2Error}</Typography>
+              </Grid>
+              <Grid className={classes.row} item xs={12} >
+                <FormControlLabel
+                  checked={checked}
+                  onChange={handleChange}
+                  control={<Checkbox value="allowExtraEmails" color="primary" />}
+                  label="" 
+                />
+                <Typography variant="body2">Tôi đã đọc và đồng ý chấp thuận các <Link href="/dieukhoan">điều khoản</Link> của Tiếng Nhật IT.</Typography>
+              </Grid>
             </Grid>
-            <Grid item xs={12} className={classes.input}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                label="Địa chỉ email"
-                autoComplete="email"
-                onChange={e => setDetails({...details,email:e.target.value})}
-                value={details.email}
-              />
-              <Typography variant="subtitle2" className={classes.errorMessage}>{emailError}</Typography>
-              <Typography variant="subtitle2" className={classes.errorMessage}>{resErrorEmail}</Typography>
+            <Button
+              type="button"
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+              onClick={handleSignUp}
+            >
+              Đăng ký tài khoản
+            </Button>
+            <Grid container justifyContent="flex-end">
+              <Grid item>
+                <Link href="/dangnhap" variant="body2">
+                  Bạn đã có tài khoản? Đăng nhập
+                </Link>
+              </Grid>
             </Grid>
-            <Grid item xs={12} className={classes.input}>
-            {labelType === 'password' ? <VisibilityIcon className={classes.icon} onClick={handleShowPassword} /> : <VisibilityOffIcon  className={classes.icon} onClick={handleShowPassword} /> }
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                label="Mật khẩu"
-                type={labelType}
-                autoComplete="current-password"
-                onChange={e => setDetails({...details,password:e.target.value})}
-                value={details.password}
-              />
-              <Typography variant="subtitle2" className={classes.errorMessage}>{passwordError}</Typography>
-            </Grid>
-            <Grid item xs={12} className={classes.input}>
-            {labelType2 === 'password' ? <VisibilityIcon className={classes.icon2} onClick={handleShowPassword2} /> : <VisibilityOffIcon  className={classes.icon2} onClick={handleShowPassword2} /> }
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                label="Xác nhận mật khẩu"
-                type={labelType2}
-                autoComplete="current-password"
-                onChange={e => setDetails({...details,password2:e.target.value})}
-                value={details.password2}
-              />
-              <Typography variant="subtitle2" className={classes.errorMessage}>{password2Error}</Typography>
-            </Grid>
-            <Grid className={classes.row} item xs={12} >
-              <FormControlLabel
-                checked={checked}
-                onChange={handleChange}
-                control={<Checkbox value="allowExtraEmails" color="primary" />}
-                label="" 
-              />
-              <Typography variant="body2">Tôi đã đọc và đồng ý chấp thuận các <Link href="/dieukhoan">điều khoản</Link> của Tiếng Nhật IT.</Typography>
-            </Grid>
-          </Grid>
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-            onClick={handleSignUp }
-          >
-            Đăng ký tài khoản
-          </Button>
-          <Grid container justifyContent="flex-end">
-            <Grid item>
-              <Link href="/dangnhap" variant="body2">
-                Bạn đã có tài khoản? Đăng nhập
-              </Link>
-            </Grid>
-          </Grid>
-        </form>
-      </div>
+          </form>
+        </div>
+      </Container>
     </Container>
   );
 }

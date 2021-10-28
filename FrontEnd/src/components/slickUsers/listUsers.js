@@ -15,7 +15,7 @@ function ListUsers({num,max,maxt, numt}) {
     return(
         <Grid container>
             <Box sx={{ display: { xs: 'block', md: 'flex' }, justifyContent: 'space-between', width:'100%' }}>
-                {OurTeam.slice(numb, numb+6).map((infor) => (
+                {OurTeam.slice(numb, numb+4).map((infor) => (
                 <Grid item key={infor.name} md={2} lg={12} style={{display: 'flex',alignItems: 'center', justifyContent: 'center'}}>
                     <Avatar src={infor.avatar} key={infor.name} />
                     <Typography variant='h6' style={{marginLeft: '10px'}}>{infor.name}</Typography>
