@@ -3,7 +3,6 @@ import { Container, makeStyles } from '@material-ui/core';
 import Posts from '../../components/posts';
 import { Box, Tabs, Tab, Typography, Button,Link, Grid } from '@mui/material';
 import PropTypes from 'prop-types';
-import SlickUser from '../../components/slickUsers'
 
 const useStyles = makeStyles((theme) => ({
   page: {
@@ -14,9 +13,6 @@ const useStyles = makeStyles((theme) => ({
     border: '1px solid #d50000',
     borderRadius: '5px',
     textAlign: 'center',
-  },
-  headerContent: {
-    
   },
   body: { 
       height: '100%',

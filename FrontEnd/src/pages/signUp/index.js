@@ -161,11 +161,12 @@ export default function SignUp() {
         data: details,
         headers:{"Content-Type" : "application/json"}
       })
-      if (response.data.error.email){
-        setResErrorEmail(response.data.error.email[0])
+      if (response.success===true) {
+        return response.success
       }
-      else {
-        history.push('/dangnhap')
+      else  {
+        console.log('The email has already been taken.')
+        history.push('/dangky')
       }
     } catch (error) {
       console.log(error);
@@ -178,8 +179,9 @@ export default function SignUp() {
         e.preventDefault();
       }
       else {
-        trySignup()
-        console.log(resErrorEmail)
+        if (trySignup()===true) {
+          history.push('/dangnhap')
+        }
         
       }
     }

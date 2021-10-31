@@ -74,9 +74,11 @@ export default function LogIn() {
         method: "post",
         url: `${api.URL}/api/login`,
         data: details,
+        headers:{"Content-Type" : "application/json"}
       })
-      if (response.data.message){
-        alert('response.data.message')
+      if (response.success===false) {
+        alert(response.message)
+        console.log(response.message)
       }
       else {
         history.push('/')
