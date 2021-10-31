@@ -3,10 +3,9 @@ import { alpha, makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
+import { Typography, MenuItem, Button } from '@mui/material';
 import InputBase from '@material-ui/core/InputBase';
 import Badge from '@material-ui/core/Badge';
-import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@mui/icons-material/Search';
@@ -14,7 +13,6 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
-import Button from '@material-ui/core/Button';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import PostAddIcon from '@material-ui/icons/PostAdd';
 import SettingsApplicationsIcon from '@material-ui/icons/SettingsApplications';
@@ -99,13 +97,15 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   userIcon:{
-    marginRight: '5px'
+    marginRight: '5px',
+    fontSize: '1.25rem'
   },
   selected:{
-    color: '#ff8000',
+    color: '#ff8000 !important',
   },
   colorBlack: {
-    color: 'rgba(0, 0, 0, 0.87)'
+    color: 'red',
+    
   }
 }));
 
@@ -142,9 +142,9 @@ export default function Header() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}><Link className={classes.colorBlack} to="/">Trang chủ</Link></MenuItem>
-      <MenuItem onClick={handleMenuClose}><Link className={classes.colorBlack} to="/congdong">Cộng đồng</Link></MenuItem>
-      <MenuItem onClick={handleMenuClose}><Link className={classes.colorBlack} to="/baiviet">Bài Viết</Link></MenuItem>
+      <MenuItem onClick={handleMenuClose}><Link to="/">Trang chủ</Link></MenuItem>
+      <MenuItem onClick={handleMenuClose}><Link to="/congdong">Cộng đồng</Link></MenuItem>
+      <MenuItem onClick={handleMenuClose}><Link to="/baiviet">Bài Viết</Link></MenuItem>
     </Menu>
   );
 

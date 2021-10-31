@@ -3,7 +3,7 @@ import { Container, Grid, makeStyles, Typography,Box, Button } from '@material-u
 import { Link } from 'react-router-dom'
 const useStyles = makeStyles({
     root: {
-        margin: 0,
+        marginBottom: '22px',
         color: 'rgb(45, 55, 72)',
         fontFamily: 'Inter, sans-serif',
         fontWeight: 400,
@@ -61,7 +61,6 @@ export default function Conditions() {
     return (
         <div className={classes.root}>
            <Container>
-           
             <div className={classes.page}>
                 <div className={classes.head}>
                     <Typography className={classes.headInner} variant="h3">Chính sách, điều khoản.</Typography>
