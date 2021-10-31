@@ -84,6 +84,10 @@ export default function SignUp() {
   const [emailError,setEmailError] = useState('');
   const [passwordError,setPasswordError] = useState('');
   const [password2Error,setPassword2Error] = useState('');
+  const [checked, setChecked] = React.useState(false);
+  const handleChange = (event) => {
+    setChecked(event.target.checked);
+  };
 
   function validation(details) {
     setNameError('');
@@ -144,12 +148,12 @@ export default function SignUp() {
 
   const trySignup = async () => {
     setResErrorEmail('')
-  
     try {
       const response = await axios({
         method: "post",
         url: `${api.URL}/api/register`,
         data: details,
+        headers:{"Content-Type" : "application/json"}
       })
       if (response.data.error.email){
         setResErrorEmail(response.data.error.email[0])
@@ -163,14 +167,17 @@ export default function SignUp() {
     }
   }
   const handleSignUp = (e)=>{
-    setResErrorEmail('')
-    if (validation(details)===false|| !details.name || !details.email || !details.password || !details.password2) {
-      e.preventDefault();
+    if (checked===true){
+      setResErrorEmail('')
+      if (validation(details)===false|| !details.name || !details.email || !details.password || !details.password2) {
+        e.preventDefault();
+      }
+      else {
+        trySignup()
+        e.preventDefault()
+      }
     }
-    else {
-      trySignup()
-      e.preventDefault()
-    }
+    else {e.preventDefault();alert('Vui lòng đồng ý với điều khoản của Tiếng Nhật IT!')}
   }
 
   return (
@@ -240,6 +247,8 @@ export default function SignUp() {
             </Grid>
             <Grid className={classes.row} item xs={12} >
               <FormControlLabel
+                checked={checked}
+                onChange={handleChange}
                 control={<Checkbox value="allowExtraEmails" color="primary" />}
                 label="" 
               />

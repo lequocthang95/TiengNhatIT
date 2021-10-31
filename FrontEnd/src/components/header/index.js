@@ -115,8 +115,10 @@ export default function Header() {
   const [isLogin, setIsLogin] = React.useState('true');
   const userInfo= isLogin;
   const handleAccountLogOut = () => {
+    localStorage.removeItem('accessToken')
     handleAccountMenuClose();
     setIsLogin(false);
+
   }
   
   // set up menu pages list  in mobile
