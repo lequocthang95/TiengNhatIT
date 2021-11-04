@@ -1,4 +1,4 @@
-import { getCategories, getType, } from '../action/categories';
+import { getCategories, getType, } from '../actions/categories';
 import { INIT_STATE } from '../state';
 
 export default function Categories(state = INIT_STATE.categoriesData, action) {

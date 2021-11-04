@@ -3,19 +3,17 @@ import { alpha, makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
+import { Typography, MenuItem, Button } from '@mui/material';
 import InputBase from '@material-ui/core/InputBase';
 import Badge from '@material-ui/core/Badge';
-import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import MenuIcon from '@material-ui/icons/Menu';
-import SearchIcon from '@material-ui/icons/Search';
+import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import MailIcon from '@material-ui/icons/Mail';
+import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
-import Button from '@material-ui/core/Button';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import PostAddIcon from '@material-ui/icons/PostAdd';
 import SettingsApplicationsIcon from '@material-ui/icons/SettingsApplications';
 import {  Link,} from 'react-router-dom';
@@ -99,13 +97,15 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   userIcon:{
-    marginRight: '5px'
+    marginRight: '5px',
+    fontSize: '1.25rem'
   },
   selected:{
-    color: '#ff8000',
+    color: '#ff8000 !important',
   },
   colorBlack: {
-    color: 'rgba(0, 0, 0, 0.87)'
+    color: 'red',
+    
   }
 }));
 
@@ -115,8 +115,10 @@ export default function Header() {
   const [isLogin, setIsLogin] = React.useState('true');
   const userInfo= isLogin;
   const handleAccountLogOut = () => {
+    localStorage.removeItem('accessToken')
     handleAccountMenuClose();
     setIsLogin(false);
+
   }
   
   // set up menu pages list  in mobile
@@ -140,9 +142,9 @@ export default function Header() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}><Link className={classes.colorBlack} to="/">Trang chủ</Link></MenuItem>
-      <MenuItem onClick={handleMenuClose}><Link className={classes.colorBlack} to="/congdong">Cộng đồng</Link></MenuItem>
-      <MenuItem onClick={handleMenuClose}><Link className={classes.colorBlack} to="/baiviet">Bài Viết</Link></MenuItem>
+      <MenuItem onClick={handleMenuClose}><Link to="/">Trang chủ</Link></MenuItem>
+      <MenuItem onClick={handleMenuClose}><Link to="/congdong">Cộng đồng</Link></MenuItem>
+      <MenuItem onClick={handleMenuClose}><Link to="/baiviet">Bài Viết</Link></MenuItem>
     </Menu>
   );
 
@@ -233,7 +235,7 @@ export default function Header() {
         <Toolbar>
           <Link  onClick = {() => setSelectedType('')} to="/">
             <Typography className={classes.title} variant="h6" noWrap>
-              Team 2 IT
+              Tiếng Nhật IT
             </Typography>
           </Link>
           <div className={classes.menuDesktop}>
@@ -321,20 +323,18 @@ export default function Header() {
           </div>
           ) : (
             <div>
-              <Button>
-                <Link className={selectedType==='signup' ? classes.selected : ''}
-                  onClick = {() => setSelectedType('signup')}
-                  to="/dangky">
-                    Đăng Ký
-                </Link>
-              </Button>
-              <Button>
-                <Link className={selectedType==='signin' ? classes.selected : ''}
-                  onClick = {() => setSelectedType('signin')}
-                  to="/dangnhap">
-                    Đăng Nhập
-                </Link>
-              </Button>
+              <Link to="/dangky">
+                <Button className={selectedType==='signup' ? classes.selected : ''}
+                  onClick = {() => setSelectedType('signup')}>  
+                    Đăng Ký 
+                </Button>
+              </Link>
+              <Link to="/dangnhap">
+                <Button className={selectedType==='signin' ? classes.selected : ''}
+                  onClick = {() => setSelectedType('signin')}>
+                  Đăng Nhập
+                </Button>
+              </Link>
             </div>
           )} 
         </Toolbar>

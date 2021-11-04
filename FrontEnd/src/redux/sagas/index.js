@@ -1,6 +1,6 @@
 import * as api from '../api';
 import { takeLatest, call, put } from 'redux-saga/effects';
-import * as actionsCategories from '../action/categories';
+import * as actionsCategories from '../actions/categories';
 
 function* showCategories(action) {
   try {
@@ -12,7 +12,6 @@ function* showCategories(action) {
     yield put(actionsCategories.getCategories.getCategoriesFailure(err));
   }
 }
-
 
 
 function* RootSagas() {

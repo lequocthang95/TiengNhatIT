@@ -1,22 +1,19 @@
 import React, { useState } from 'react';
 import { makeStyles} from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import { Container,Typography,CardMedia,Link, } from '@mui/material';
+import { Container,Typography,Link,Box } from '@mui/material';
 import Button from '@material-ui/core/Button';
 import Categories from '../../components/categories';
+import HeadImage from '../../images/homePage/header.jpg'
 
 const useStyles = makeStyles((theme) => ({
   header: {
+    minHeight: '450px',
     marginTop: '30px',
-    
-    minHeight: '420px',
-    display: 'flex',
-    alignItems: 'center',
     borderRadius: '7px',
-    lineHeight: 2,
-  },
-  title: {
-    marginBottom: '20px'
+    backgroundImage:`url(${HeadImage})`,
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: '100% 100%',
   }, 
   footer: {
     width: '80%',  
@@ -30,54 +27,58 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'space-around',
     alignItems: 'center',
-  }
+  },
+  category: {
+    backgroundColor: '#dbd7d7', 
+    marginTop: '20px',
+    padding: '20px',
+    borderRadius: '7px',
+  },  
+  categoryContent: {
+    marginTop: '10px',
+    backgroundColor: 'hsl(205,46%,92%)', 
+    borderRadius: '7px',
+  }, 
 }));
-
-
 export default function HomePage() {
   const [button1,setButton1] =useState('outlined')
   const [button2,setButton2] =useState('contained')
   const classes = useStyles();
-  
 
   return (
     <Container>
       <Grid container className={classes.header} spacing={3}>
-        <Grid item md={7} xs={12} style={{padding: '20px',}}>
-          <Typography variant="h3" className={classes.title}>Tiếng Nhật trong lĩnh vực IT</Typography>
-          <Typography variant="h4" color="primary" sx={{fontFamily: 'Great Vibes, cursive'}} >
-            Chủ đề đa dạng! Bài viết hữu ích!
-          </Typography>
-          <Typography variant="h4" color="primary" sx={{fontFamily: 'Great Vibes, cursive'}} >
-            Cộng đồng gắn kết! Từ vựng phong phú!
-          </Typography>
-          <Typography variant="h5" style={{marginTop: '10px'}}>
-            Team 2 IT là trang web chia sẽ tiếng Nhật trong lĩnh vực IT và hoàn toàn miễn phí.
-            Chúng tôi hi vọng các bạn cùng tham với chúng tôi để cùng nhau xây dựng một cộng đồng gắt kết, 
-            để cùng nhau ngày càng phát triển.
-          </Typography>
-          <div style={{marginTop: '30px',}}>
-            <Button variant={button1} color="primary"
-              onMouseOver={ e => {setButton1('contained');setButton2('outlined')}}
-              onMouseOut={e => {setButton1('outlined');setButton2('contained')}}>
-              <Link href="/dangnhap" underline="none">Đăng Nhập</Link>
-            </Button>
-            <Button variant={button2} color="primary" style={{marginLeft: '20px'}}>Tham gia</Button>
-          </div>
-        </Grid>
-        <Grid item md={5} xs={12}>  
-        <CardMedia
-          component="img"
-          alt="head homePage"
-          image="/static/images/homePage/header.jpg"
-        />
+        <Grid item sm={8} xs={12}>
+          <Typography variant="h3">Tiếng Nhật trong lĩnh vực IT</Typography>
+          <Box sx={{pl: 1, pt: 2}}>
+            <Typography variant="h5" color="primary">
+              Chủ đề đa dạng! Bài viết hữu ích!Cộng đồng gắn kết! Từ vựng phong phú!
+            </Typography>
+            <Typography variant="h6" style={{marginTop: '10px'}}>
+              Team 2 IT là trang web chia sẽ tiếng Nhật trong lĩnh vực IT.
+              Chúng tôi hi vọng các bạn cùng tham với chúng tôi để cùng nhau xây dựng một cộng đồng gắt kết, 
+              để cùng nhau ngày càng phát triển.
+            </Typography>
+            <div style={{marginTop: '30px',}}>
+              <Link href="/dangnhap" underline="none">
+                <Button variant={button1} color="primary"
+                  onMouseOver={ e => {setButton1('contained');setButton2('outlined')}}
+                  onMouseOut={e => {setButton1('outlined');setButton2('contained')}}>
+                  Đăng Nhập
+                </Button>
+              </Link>
+              <Link href="/congdong" underline="none">
+                <Button variant={button2} color="primary" style={{marginLeft: '20px'}}>Tham gia</Button>
+              </Link>
+            </div>
+          </Box>
         </Grid>
       </Grid>
-      <Grid container style={{display: 'flex', justifyContent: 'center', height: '100px', marginTop: '20px', alignItems: 'center'}}>
-        <Typography variant="h4" className={classes.title}>Chủ đề </Typography>
-      </Grid>
-      <Grid container spacing={2}>
-        <Categories/>  
+      <Grid container spacing={3} className={classes.category}>
+        <Typography variant="h4">Chủ đề từ vựng tiếng Nhật</Typography>
+        <Grid container className={classes.categoryContent}>
+          <Categories/>  
+        </Grid>
       </Grid>
       <Grid container style={{display:'flex',alignItems: 'center',justifyContent: 'center'}}>
         <div className={classes.footer}>
@@ -97,4 +98,3 @@ export default function HomePage() {
     </Container>
   );
 }
-
