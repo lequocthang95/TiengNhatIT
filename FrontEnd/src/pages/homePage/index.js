@@ -67,7 +67,7 @@ export default function HomePage() {
                   Đăng Nhập
                 </Button>
               </Link>
-              <Link href="/congdong" underline="none">
+              <Link href="/Community" underline="none">
                 <Button variant={button2} color="primary" style={{marginLeft: '20px'}}>Tham gia</Button>
               </Link>
             </div>
@@ -86,7 +86,7 @@ export default function HomePage() {
           <Typography variant="h6" style={{color:'rgba(0, 0, 0, 0.54)'}}>Chúng tôi rất vui mừng và trân trọng sự giúp đỡ từ các đơn vị!</Typography>
           <div className={classes.logos}></div>
           <Typography variant="h5">Bạn muốn trở thành nhà tài trợ cho Team2 IT ?</Typography>
-          <Link href="/lienhe" underline="none">
+          <Link href="/contacts" underline="none">
             <Button variant={button1} color="primary" 
               style={{marginTop: '10px'}}
               onMouseOver={ e => {setButton1('contained')}}

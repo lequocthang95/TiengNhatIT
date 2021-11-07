@@ -75,7 +75,7 @@ export default function Community({isLogin}) {
                         tiếng Nhật. Bạn có thể giúp đỡ người khác giải quyết vấn đề. Bạn cũng có thể chia sẽ những hiểu biết, kinh nghiệm 
                         của mình. Chúng tôi rất vui mừng và trân trọng những đóng góp của bạn!
                     </Typography> 
-                    <Link href="/dangnhap" underline="none">
+                    <Link href="/community" underline="none">
                       <Button variant={button1} color="primary"
                           onMouseOver={ e => {setButton1('contained')}}
                           onMouseOut={e => {setButton1('outlined')}} style={{ marginTop: '20px'}}
@@ -108,7 +108,7 @@ export default function Community({isLogin}) {
                           <Grid item md={6}  sx={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}} 
                             xs={12}>
                             <Typography variant="h5" color="primary">{title}</Typography>
-                            <Link href="/congdong/ask" underline="none">
+                            <Link href="/community/ask" underline="none">
                                 <Button variant="contained" disabled={isLogin===true ? false : true} >Đặt câu hỏi</Button>
                             </Link>
                           </Grid>

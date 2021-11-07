@@ -12,6 +12,7 @@ import { Tag, X } from "react-feather";
 // import { categoriesState$ } from '../../redux/selectors';
 // import { createPost } from '../../redux/action/posts';
 // import { useHistory } from "react-router-dom"
+// <div dangerouslySetInnerHTML={{__html:dataPost.content}}/>
 
 const EditorStyle = styled('div')(({ theme }) => ({
   minHeight: '500px',
@@ -40,7 +41,6 @@ export default function CreatPost() {
   //   EditorState.createEmpty()
   // );
   // const dispatch = useDispatch();
-
   // useEffect(() => {
     
   // }, [editorState]);
@@ -138,7 +138,6 @@ export default function CreatPost() {
                 <Button type="submit">Submit</Button>
               </EditorStyle>    
             </form>
-            <div dangerouslySetInnerHTML={{__html:dataPost.content}}/>
           </Grid>
       </Container>
     </div>
