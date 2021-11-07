@@ -48,15 +48,15 @@ function App() {
         <Header />
           <Switch>
             <Route path="/" exact><HomePage/></Route>
-            <Route path={`/chude/:_id`}><Vocabularies/></Route>
-            <Route path="/congdong/ask" exact><CreatePost /></Route>
-            <Route path="/congdong"> <Community isLogin={Login} /></Route>
-            <Route path="/baiviet" component={Blogs}></Route>
-            <Route path="/dangnhap" component={LogIn}></Route>
-            <Route path="/dangky" component={SignUp}></Route>
-            <Route path="/gioithieu"><About/></Route>
-            <Route path="/dieukhoan"><Conditions/></Route>
-            <Route path="/lienhe"><Contacts/></Route>
+            <Route path={`/vocabularies/:_id`}><Vocabularies/></Route>
+            <Route path="/community/ask" exact><CreatePost /></Route>
+            <Route path="/community"> <Community isLogin={Login} /></Route>
+            <Route path="/blogs" component={Blogs}></Route>
+            <Route path="/login" component={LogIn}></Route>
+            <Route path="/signup" component={SignUp}></Route>
+            <Route path="/about"><About/></Route>
+            <Route path="/conditions"><Conditions/></Route>
+            <Route path="/contacts"><Contacts/></Route>
             <Route><NotFound/></Route>
           </Switch>
         <Footer />

@@ -143,7 +143,7 @@ export default function Header() {
       onClose={handleMenuClose}
     >
       <MenuItem onClick={handleMenuClose}><Link to="/">Trang chủ</Link></MenuItem>
-      <MenuItem onClick={handleMenuClose}><Link to="/congdong">Cộng đồng</Link></MenuItem>
+      <MenuItem onClick={handleMenuClose}><Link to="/Community">Cộng đồng</Link></MenuItem>
       <MenuItem onClick={handleMenuClose}><Link to="/baiviet">Bài Viết</Link></MenuItem>
     </Menu>
   );
@@ -247,14 +247,14 @@ export default function Header() {
             </Link>
             <Link className={selectedType==='community' ? classes.selected : ''}
               onClick = {() => setSelectedType('community')}
-              to="/congdong">
+              to="/Community">
               <MenuItem>
                 Cộng Đồng
               </MenuItem>
             </Link>   
             <Link className={selectedType==='blogs' ? classes.selected : ''}
               onClick = {() => setSelectedType('blogs')}
-              to="/baiviet">
+              to="/blogs">
               <MenuItem>
                 Bài viết
               </MenuItem>
