@@ -55,7 +55,7 @@ function App() {
             <Route path="/login" component={LogIn}></Route>
             <Route path="/signup" component={SignUp}></Route>
             <Route path="/about"><About/></Route>
-            <Route path="/conditions"><Conditions/></Route>
+            <Route path="/terms"><Conditions/></Route>
             <Route path="/contacts"><Contacts/></Route>
             <Route><NotFound/></Route>
           </Switch>
