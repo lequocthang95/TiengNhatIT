@@ -67,7 +67,7 @@ export default function HomePage() {
                   Đăng Nhập
                 </Button>
               </Link>
-              <Link href="/Community" underline="none">
+              <Link href="/community" underline="none">
                 <Button variant={button2} color="primary" style={{marginLeft: '20px'}}>Tham gia</Button>
               </Link>
             </div>

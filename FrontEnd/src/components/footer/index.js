@@ -42,7 +42,7 @@ export default function Footer() {
               <Link to="/about">Giới Thiệu</Link>
             </div>
             <Box>
-              <Link href="/conditions"> Điều khoản</Link>
+              <Link href="/terms"> Điều khoản</Link>
             </Box>
             <Box>
               <Link to="/contacts">Liên hệ</Link>
