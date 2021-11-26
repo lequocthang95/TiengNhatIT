@@ -55,7 +55,7 @@ const useStyles = makeStyles({
     },
 })
 
-export default function Conditions() {
+export default function Terms() {
 
     const classes = useStyles();
     return (
