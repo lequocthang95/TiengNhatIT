@@ -9,8 +9,8 @@ import LogIn from './pages/logIn';
 import SignUp from './pages/signUp';
 import NotFound from './pages/notFound';
 import About from './pages/about';
-import Conditions from './pages/conditions';
-import Contacts from './pages/contacts/index.jsx'
+import Terms from './pages/terms';
+import Contacts from './pages/contacts'
 import CreatePost from './pages/community/creatPost'
 import Vocabularies from './pages/vocabularies';
 import { ThemeProvider , createTheme } from '@mui/material/styles';
@@ -55,7 +55,7 @@ function App() {
             <Route path="/login" component={LogIn}></Route>
             <Route path="/signup" component={SignUp}></Route>
             <Route path="/about"><About/></Route>
-            <Route path="/terms"><Conditions/></Route>
+            <Route path="/terms"><Terms/></Route>
             <Route path="/contacts"><Contacts/></Route>
             <Route><NotFound/></Route>
           </Switch>

@@ -35,7 +35,7 @@ export default function Footer() {
 
   return (
     <div className={classes.footer}>
-      <Container style={{padding: 0}}>
+      <Container style={{padding: '7px'}}>
         <div className={classes.container} >
           <Grid xs={4} sm={3} className={classes.groupLink} spacing={3}>
             <div>
