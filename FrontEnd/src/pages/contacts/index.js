@@ -1,18 +1,17 @@
 import React from 'react'
 import { useState } from 'react'
 import PropTypes from 'prop-types';
-import { Container, Grid, TextField, Box, Button} from '@mui/material';
+import { Container, Grid, TextField, Box, Button, Typography } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
-import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 const useStyles = makeStyles((theme) => ({
     paper: {
         marginTop: theme.spacing(1),
-        display: 'flex',
+        display: 'flex',    
         flexDirection: 'column',
         alignItems: 'center',
         paddingBottom: theme.spacing(2),
@@ -179,12 +178,7 @@ export default function Contacts() {
                         </Grid>
                     </Grid>
                 </Container>
-            </div>
-       
-            <Container>
-                
-            </Container>
-        
+            </div>   
         </div>  
     )
 }

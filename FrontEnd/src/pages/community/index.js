@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Container, makeStyles } from '@material-ui/core';
+import { makeStyles } from '@mui/styles';
 import Posts from '../../components/posts';
-import { Box, Tabs, Tab, Typography, Button,Link, Grid } from '@mui/material';
+import { Box, Tabs, Tab, Typography, Button,Link, Grid, Container } from '@mui/material';
 import PropTypes from 'prop-types';
 
 const useStyles = makeStyles((theme) => ({

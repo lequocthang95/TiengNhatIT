@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@mui/styles';
 import { Link } from 'react-router-dom';
 import { Container, Box, Grid } from '@mui/material';
 
@@ -35,14 +35,14 @@ export default function Footer() {
 
   return (
     <div className={classes.footer}>
-      <Container style={{padding: '7px'}}>
+      <Container>
         <div className={classes.container} >
           <Grid xs={4} sm={3} className={classes.groupLink} spacing={3}>
             <div>
               <Link to="/about">Giới Thiệu</Link>
             </div>
             <Box>
-              <Link href="/terms"> Điều khoản</Link>
+              <Link to="/terms"> Điều khoản</Link>
             </Box>
             <Box>
               <Link to="/contacts">Liên hệ</Link>
