@@ -1,24 +1,23 @@
 import React from 'react';
-import { alpha, makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import { Typography, MenuItem, Button } from '@mui/material';
-import InputBase from '@material-ui/core/InputBase';
-import Badge from '@material-ui/core/Badge';
-import Menu from '@material-ui/core/Menu';
-import MenuIcon from '@material-ui/icons/Menu';
+import { MenuItem, Button, Container } from '@mui/material';
+import { makeStyles } from '@mui/styles';
+import { alpha, } from '@mui/material/styles';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import InputBase from '@mui/material/InputBase';
+import Badge from '@mui/material/Badge';
+import Menu from '@mui/material/Menu';
+import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
-import AccountCircle from '@material-ui/icons/AccountCircle';
+import AccountCircle from '@mui/icons-material/AccountCircle';
 import MailIcon from '@mui/icons-material/Mail';
-import NotificationsIcon from '@material-ui/icons/Notifications';
-import MoreIcon from '@material-ui/icons/MoreVert';
+import NotificationsIcon from '@mui/icons-material/Notifications';
+import MoreIcon from '@mui/icons-material/MoreVert';
+import SettingsApplicationsIcon from '@mui/icons-material/SettingsApplications';
+import PostAddIcon from '@mui/icons-material/PostAdd';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
-import PostAddIcon from '@material-ui/icons/PostAdd';
-import SettingsApplicationsIcon from '@material-ui/icons/SettingsApplications';
 import {  Link,} from 'react-router-dom';
-import Container from '@material-ui/core/Container';
-
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -42,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: alpha(theme.palette.common.white, 1),
     },
     marginRight: theme.spacing(2),
-    marginLeft: 0,
+    marginLeft: 3,
     width: '100%',
     [theme.breakpoints.up('sm')]: {
       marginLeft: theme.spacing(3),
@@ -50,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   searchIcon: {
-    padding: theme.spacing(0, 2),
+    padding: theme.spacing(0, 21),
     height: '100%',
     position: 'absolute',
     pointerEvents: 'none',
@@ -81,7 +80,6 @@ const useStyles = makeStyles((theme) => ({
     display: 'none',
     [theme.breakpoints.up('md')]: {
       display: 'flex',
-      marginLeft: '80px',
     },
   },
   sectionMobile: {
@@ -233,16 +231,11 @@ export default function Header() {
       <AppBar position="fixed" color="default">
       <Container>
         <Toolbar>
-          <Link  onClick = {() => setSelectedType('')} to="/">
-            <Typography className={classes.title} variant="h6" noWrap>
-              Tiếng Nhật IT
-            </Typography>
-          </Link>
           <div className={classes.menuDesktop}>
             <Link className={selectedType==='homepage' ? classes.selected : ''}
               onClick = {() => setSelectedType('homepage')} to="/">
               <MenuItem>
-                Trang chủ
+                Tiếng Nhật IT
               </MenuItem>
             </Link>
             <Link className={selectedType==='community' ? classes.selected : ''}
@@ -323,13 +316,13 @@ export default function Header() {
           </div>
           ) : (
             <div>
-              <Link to="/dangky">
+              <Link to="/signUp">
                 <Button className={selectedType==='signup' ? classes.selected : ''}
                   onClick = {() => setSelectedType('signup')}>  
                     Đăng Ký 
                 </Button>
               </Link>
-              <Link to="/dangnhap">
+              <Link to="/logIn">
                 <Button className={selectedType==='signin' ? classes.selected : ''}
                   onClick = {() => setSelectedType('signin')}>
                   Đăng Nhập

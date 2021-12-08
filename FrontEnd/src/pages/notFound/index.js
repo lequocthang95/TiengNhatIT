@@ -1,5 +1,6 @@
 import React from 'react';
-import { Container,Button, Link, makeStyles,Typography} from '@material-ui/core'
+import { Container,Button, Link, Typography} from '@mui/material';
+import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles((theme) => ({
     page: {

@@ -1,5 +1,5 @@
 import React,{ useState,useEffect } from 'react';
-import { Grid } from '@material-ui/core'
+import { Grid } from '@mui/material'
 import OurTeamFake from './ourTeamFake';
 import OneCard from './oneCard';
 

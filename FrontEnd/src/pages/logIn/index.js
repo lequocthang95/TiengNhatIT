@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
 import axios from 'axios'
 import * as api from '../../redux/api'
-import CssBaseline from '@material-ui/core/CssBaseline';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import CssBaseline from '@mui/material/CssBaseline';
+import LockIcon from '@mui/icons-material/Lock';
 import { Typography, Box, TextField, Grid, Button, Avatar, Container } from '@mui/material';
-import { makeStyles } from '@material-ui/core/styles';
-import VisibilityIcon from '@material-ui/icons/Visibility';
-import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
+import { makeStyles } from '@mui/styles';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { useHistory, Link} from "react-router-dom";
 import Background from '../../images/login/nen.jpg'
 
@@ -112,7 +112,7 @@ export default function LogIn() {
           <CssBaseline />
           <div className={classes.paper}>
             <Avatar className={classes.avatar}>
-              <LockOutlinedIcon />
+              <LockIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
               Đăng Nhập

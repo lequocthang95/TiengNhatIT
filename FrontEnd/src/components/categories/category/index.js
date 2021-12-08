@@ -1,10 +1,9 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import {Card, CardActionArea, CardActions, CardContent, Typography,Button,CardMedia  } from '@mui/material';
+import { makeStyles } from '@mui/styles';
+import { Card, CardActionArea, CardActions, CardContent, Typography, Button, CardMedia } from '@mui/material';
 import { Link } from 'react-router-dom'
 
 const useStyles = makeStyles({
-
   root: {
     width: '100%',
     minHeight: 300,

@@ -1,15 +1,12 @@
 import React from 'react';
-import Container from '@material-ui/core/Container';
-import Typography from '@material-ui/core/Typography';
-import { Grid, makeStyles} from '@material-ui/core';
-import Button from '@material-ui/core/Button';
-import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt';
-import ImageList from '@material-ui/core/ImageList';
-import ImageListItem from '@material-ui/core/ImageListItem';
+import { Container, Typography, Grid, Button, Box } from '@mui/material';
+import { makeStyles } from '@mui/styles';
+import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
+import ImageList from '@mui/material/ImageList';
+import ImageListItem from '@mui/material/ImageListItem';
+import { Link } from 'react-router-dom';
 import itemData from './itemData.js';
 import OurTeamCards from '../../components/cards/ourteamCards'
-import Box from '@material-ui/core/Box';
-import { Link } from 'react-router-dom';
 import Ripple from '../../components/animations/ripple'
 
 const useStyles = makeStyles((theme) => ({
