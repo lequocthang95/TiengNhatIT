@@ -26,7 +26,7 @@ const theme = createTheme({
     MuiMenuItem: {
       styleOverrides: {
         root: {
-          fontSize: '1.25rem',
+          fontSize: '1.3rem',
         },
       },
     },
