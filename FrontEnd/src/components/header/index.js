@@ -81,6 +81,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up('md')]: {
       display: 'flex',
     },
+   
   },
   sectionMobile: {
     display: 'flex',
@@ -230,7 +231,7 @@ export default function Header() {
     <div className={classes.grow}>
       <AppBar position="fixed" color="default">
       <Container>
-        <Toolbar>
+        <Toolbar style={{paddingLeft: '6px'}}>
           <div className={classes.menuDesktop}>
             <Link className={selectedType==='homepage' ? classes.selected : ''}
               onClick = {() => setSelectedType('homepage')} to="/">

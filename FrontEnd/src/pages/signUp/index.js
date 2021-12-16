@@ -1,7 +1,7 @@
 import React,{ useState } from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import LockIcon from '@mui/icons-material/Lock';
-import { Typography, TextField, Grid, Button, Avatar, Container, Link } from '@mui/material';
+import { Typography, TextField, Grid, Button, Avatar, Container } from '@mui/material';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import { makeStyles } from '@mui/styles';
@@ -10,7 +10,8 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { useHistory } from "react-router-dom";
 import axios from 'axios';
 import * as api from '../../redux/api'
-import BackgroundImage from '../../images/sigup/nen.jpg'
+import BackgroundImage from '../../images/sigup/nen.jpg';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   page: {
@@ -22,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(1),
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center',
+    aligns: 'center',
     paddingBottom: theme.spacing(2),
     minHeight: '552px'
   },
@@ -255,7 +256,7 @@ export default function SignUp() {
                   control={<Checkbox value="allowExtraEmails" color="primary" />}
                   label="" 
                 />
-                <Typography variant="body2">Tôi đã đọc và đồng ý chấp thuận các <Link href="/dieukhoan">điều khoản</Link> của Tiếng Nhật IT.</Typography>
+                <Typography variant="body2">Tôi đã đọc và đồng ý chấp thuận các <Link to="/terms">điều khoản</Link> của Tiếng Nhật IT.</Typography>
               </Grid>
             </Grid>
             <Button
@@ -269,8 +270,8 @@ export default function SignUp() {
               Đăng ký tài khoản
             </Button>
             <Grid container justifyContent="flex-end">
-              <Grid item>
-                <Link href="/dangnhap" variant="body2">
+              <Grid >
+                <Link to="/login" variant="body2">
                   Bạn đã có tài khoản? Đăng nhập
                 </Link>
               </Grid>

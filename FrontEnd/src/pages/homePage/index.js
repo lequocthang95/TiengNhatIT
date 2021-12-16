@@ -7,11 +7,12 @@ import HeadImage from '../../images/homePage/header.jpg'
 const useStyles = makeStyles((theme) => ({
   header: {
     minHeight: '450px',
-    marginTop: '30px',
+    padding: '20px',
     borderRadius: '7px',
     backgroundImage:`url(${HeadImage})`,
     backgroundRepeat: 'no-repeat',
     backgroundSize: '100% 100%',
+    marginTop: '10px',
   }, 
   footer: {
     width: '80%',  
@@ -45,7 +46,7 @@ export default function HomePage() {
 
   return (
     <Container>
-      <Grid container className={classes.header} spacing={3}>
+      <Grid container className={classes.header}>
         <Grid item sm={8} xs={12}>
           <Typography variant="h3">Tiếng Nhật trong lĩnh vực IT</Typography>
           <Box sx={{pl: 1, pt: 2}}>
@@ -72,7 +73,7 @@ export default function HomePage() {
           </Box>
         </Grid>
       </Grid>
-      <Grid container spacing={3} className={classes.category}>
+      <Grid container className={classes.category}>
         <Typography variant="h4">Chủ đề từ vựng tiếng Nhật</Typography>
         <Grid container className={classes.categoryContent}>
           <Categories/>  
