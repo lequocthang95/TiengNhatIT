@@ -41,7 +41,6 @@ const theme = createTheme({
 });
 function App() {
   const Login= true;
-  
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
@@ -64,5 +63,4 @@ function App() {
     </ThemeProvider>
   );
 }
-
 export default App;

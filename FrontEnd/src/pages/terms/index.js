@@ -85,7 +85,7 @@ export default function Terms() {
                         ngoài ra sẽ không sử dụng cho bất kỳ mục đích nào khác.
                         Chúc các bạn học tập tốt !</p>
                     </Grid>
-                    <Grid className={classes.noticePlace} item sm={3}>
+                    <Grid item sm={3} className={classes.noticePlace}>
                         <Box className={classes.notice}>
                             <Typography variant='h5'>Làm thế nào để liên hệ với chúng tôi?</Typography>
                             <Typography variant='body1'>Nếu bạn có bất kỳ câu hỏi hoặc thắc mắc nào về chính sách điều khoản, vui lòng liên hệ với chúng tôi.</Typography>
