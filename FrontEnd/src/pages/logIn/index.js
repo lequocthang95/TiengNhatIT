@@ -62,7 +62,7 @@ export default function LogIn() {
   const handleShowPassword = ()=>{
     labelType === 'password'? setLabelType('text') : setLabelType('password') ;   
   }
-  let history = useHistory();
+  // let history = useHistory();
   const [details,setDetails] = useState({email: '', password:''})
   const [resErrorEmail,setResErrorEmail] = useState('')
   const [resErrorPassword,setResErrorPassword] = useState('')

@@ -13,6 +13,7 @@ import Terms from './pages/terms';
 import Contacts from './pages/contacts'
 import CreatePost from './pages/community/creatPost'
 import Vocabularies from './pages/vocabularies';
+import Vocabulary from './pages/vocabulary';
 import { ThemeProvider , createTheme } from '@mui/material/styles';
 import './index.css';
 
@@ -48,6 +49,7 @@ function App() {
           <Switch>
             <Route path="/" exact><HomePage/></Route>
             <Route path={`/vocabularies/:_id`}><Vocabularies/></Route>
+            <Route path={`/vocabulary/:_id`}><Vocabulary/></Route>
             <Route path="/community/ask" exact><CreatePost /></Route>
             <Route path="/community"> <Community isLogin={Login} /></Route>
             <Route path="/blogs" component={Blogs}></Route>
