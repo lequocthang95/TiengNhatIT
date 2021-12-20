@@ -27,13 +27,14 @@ const theme = createTheme({
     MuiMenuItem: {
       styleOverrides: {
         root: {
-          fontSize: '1.3rem',
+          fontSize: '1.4rem',
         },
       },
     },
     MuiTypography: {
       styleOverrides: {
         root: {
+          Typography: { fontSize: '2rem'},
           body2: { fontSize: '2rem'},
         },
       },
@@ -41,7 +42,7 @@ const theme = createTheme({
   },  
 });
 function App() {
-  const Login= true;
+  const Login= false;
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>

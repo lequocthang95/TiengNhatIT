@@ -147,7 +147,7 @@ export default function Vocabularies() {
     };
     getData();
   }, [_id]);
-  console.log(vocabulariesData);
+
 
   return (
     <div style={{minHeight: '580px'}}>
