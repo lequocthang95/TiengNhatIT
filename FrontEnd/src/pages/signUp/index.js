@@ -145,10 +145,8 @@ export default function SignUp() {
 
   const [details,setDetails] = useState({name:'',email: '', password:'',password2: '',})
   let history = useHistory();
-  const [resErrorEmail,setResErrorEmail] = useState('')
 
   const trySignup = async () => {
-    setResErrorEmail('')
     try {
       const response = await axios({
         method: "post",
@@ -156,12 +154,14 @@ export default function SignUp() {
         data: details,
         headers:{"Content-Type" : "application/json"}
       })
-      if (response.success===true) {
-        return response.success
+      if (response.data.success) {
+        history.push('/login')
+        console.log(response)
       }
       else  {
-        console.log('The email has already been taken.')
-        history.push('/dangky')
+        setEmailError('Email đã tồn tại!')
+        console.log(response.data.error)
+        history.push('/signup')
       }
     } catch (error) {
       console.log(error);
@@ -169,15 +169,12 @@ export default function SignUp() {
   }
   const handleSignUp = (e)=>{
     if (checked===true){
-      setResErrorEmail('')
+      setEmailError('')
       if (validation(details)===false|| !details.name || !details.email || !details.password || !details.password2) {
         e.preventDefault();
       }
       else {
-        if (trySignup()===true) {
-          history.push('/dangnhap')
-        }
-        
+        trySignup();
       }
     }
     else {e.preventDefault();alert('Vui lòng đồng ý với điều khoản của Tiếng Nhật IT!')}
@@ -219,7 +216,6 @@ export default function SignUp() {
                   value={details.email}
                 />
                 <Typography variant="subtitle2" className={classes.errorMessage}>{emailError}</Typography>
-                <Typography variant="subtitle2" className={classes.errorMessage}>{resErrorEmail}</Typography>
               </Grid>
               <Grid item xs={12} className={classes.input}>
               {labelType === 'password' ? <VisibilityIcon className={classes.icon} onClick={handleShowPassword} /> : <VisibilityOffIcon  className={classes.icon} onClick={handleShowPassword} /> }

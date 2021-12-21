@@ -37,7 +37,7 @@ export default function Footer() {
     <div className={classes.footer}>
       <Container>
         <div className={classes.container} >
-          <Grid xs={4} sm={3} className={classes.groupLink} spacing={3}>
+          <Grid item xs={4} sm={3} className={classes.groupLink}>
             <div>
               <Link to="/about">Giới Thiệu</Link>
             </div>

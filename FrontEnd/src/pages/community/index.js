@@ -105,8 +105,7 @@ export default function Community({isLogin}) {
                                 <Tab label="popular" {...a11yProps(2)} />
                             </Tabs>
                           </Grid>
-                          <Grid item md={6}  sx={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}} 
-                            xs={12}>
+                          <Grid item md={6} xs={12} sx={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}} >
                             <Typography variant="h5" color="primary">{title}</Typography>
                             <Link href="/community/ask" underline="none">
                                 <Button variant="contained" disabled={isLogin===true ? false : true} >Đặt câu hỏi</Button>

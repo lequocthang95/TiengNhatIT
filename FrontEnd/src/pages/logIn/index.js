@@ -76,12 +76,11 @@ export default function LogIn() {
         data: details,
         headers:{"Content-Type" : "application/json"}
       })
-      if (response.success===false) {
-        alert(response.message)
-        console.log(response.message)
+      if (response.data.success===false) {
+        console.log('response.data')
       }
       else {
-        history.push('/')
+        console.log(response.data)
       }
     } 
     catch (error) {
@@ -89,6 +88,7 @@ export default function LogIn() {
     }
   }
   const handleLogIn = (e)=>{
+    e.preventDefault();
     setResErrorEmail('')
     setResErrorPassword('')
     if (!details.email) {
@@ -101,7 +101,6 @@ export default function LogIn() {
     }
     if (details.password && details.email) { 
       tryLogIn()
-      e.preventDefault()
     }
   }
 
