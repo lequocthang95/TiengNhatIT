@@ -13,6 +13,7 @@ import Terms from './pages/terms';
 import Contacts from './pages/contacts'
 import CreatePost from './pages/community/creatPost'
 import Vocabularies from './pages/vocabularies';
+import Vocabulary from './pages/vocabulary';
 import { ThemeProvider , createTheme } from '@mui/material/styles';
 import './index.css';
 
@@ -26,13 +27,14 @@ const theme = createTheme({
     MuiMenuItem: {
       styleOverrides: {
         root: {
-          fontSize: '1.3rem',
+          fontSize: '1.4rem',
         },
       },
     },
     MuiTypography: {
       styleOverrides: {
         root: {
+          Typography: { fontSize: '2rem'},
           body2: { fontSize: '2rem'},
         },
       },
@@ -40,7 +42,7 @@ const theme = createTheme({
   },  
 });
 function App() {
-  const Login= true;
+  const Login= false;
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
@@ -48,6 +50,7 @@ function App() {
           <Switch>
             <Route path="/" exact><HomePage/></Route>
             <Route path={`/vocabularies/:_id`}><Vocabularies/></Route>
+            <Route path={`/vocabulary/:_id`}><Vocabulary/></Route>
             <Route path="/community/ask" exact><CreatePost /></Route>
             <Route path="/community"> <Community isLogin={Login} /></Route>
             <Route path="/blogs" component={Blogs}></Route>

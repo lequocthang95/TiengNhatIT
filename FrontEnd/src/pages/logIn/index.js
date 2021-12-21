@@ -7,7 +7,7 @@ import { Typography, Box, TextField, Grid, Button, Avatar, Container } from '@mu
 import { makeStyles } from '@mui/styles';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import { useHistory, Link} from "react-router-dom";
+import { Link} from "react-router-dom";
 import Background from '../../images/login/nen.jpg'
 
 const useStyles = makeStyles((theme) => ({
@@ -62,10 +62,11 @@ export default function LogIn() {
   const handleShowPassword = ()=>{
     labelType === 'password'? setLabelType('text') : setLabelType('password') ;   
   }
-  let history = useHistory();
+  // let history = useHistory();
   const [details,setDetails] = useState({email: '', password:''})
   const [resErrorEmail,setResErrorEmail] = useState('')
   const [resErrorPassword,setResErrorPassword] = useState('')
+
   const tryLogIn = async () => {
     setResErrorEmail('')
     setResErrorPassword('')
@@ -74,14 +75,13 @@ export default function LogIn() {
         method: "post",
         url: `${api.URL}/api/login`,
         data: details,
-        headers:{"Content-Type" : "application/json"}
+        headers:{"Content-Type" : "multipart/form-data"},
       })
-      if (response.data.success===false) {
-        console.log('response.data')
+      if (response){
+        console.log(response)
       }
-      else {
-        console.log(response.data)
-      }
+      console.log(response.xsrfCookieName)
+      
     } 
     catch (error) {
       console.log(error);

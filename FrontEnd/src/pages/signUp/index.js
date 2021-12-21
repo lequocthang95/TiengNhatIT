@@ -155,12 +155,11 @@ export default function SignUp() {
         headers:{"Content-Type" : "application/json"}
       })
       if (response.data.success) {
+        alert('Đăng ký thành công!')
         history.push('/login')
-        console.log(response)
       }
       else  {
         setEmailError('Email đã tồn tại!')
-        console.log(response.data.error)
         history.push('/signup')
       }
     } catch (error) {

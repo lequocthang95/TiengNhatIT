@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@mui/styles';
 import { Card, CardActionArea, CardActions, CardContent, Typography, Button, CardMedia } from '@mui/material';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles({
   root: {
@@ -26,7 +26,7 @@ export default function Category({category}) {
           image="/static"
           title="Contemplative Reptile"
         />
-        <Link to={`/chude/${category._id}`}>
+        <Link to={`/vocabularies/${category._id}`}>
           <CardContent>
             <Typography gutterBottom variant="h5" component="h2">
             {category.name}

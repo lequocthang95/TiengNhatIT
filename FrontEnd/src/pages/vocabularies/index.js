@@ -3,7 +3,7 @@ import axios from 'axios'
 import { useParams } from 'react-router';
 import PropTypes from 'prop-types';
 import { useTheme } from '@mui/material/styles';
-import { Box, Container, Link } from '@mui/material';
+import { Box, Container} from '@mui/material';
 import Table from '@mui/material/Table';
 import TableHead from '@mui/material/TableHead';
 import TableBody from '@mui/material/TableBody';
@@ -18,6 +18,7 @@ import FirstPage from '@mui/icons-material/FirstPage';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPage from '@mui/icons-material/LastPage';
+import { Link } from 'react-router-dom';
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -146,7 +147,7 @@ export default function Vocabularies() {
     };
     getData();
   }, [_id]);
-  console.log(vocabulariesData);
+
 
   return (
     <div style={{minHeight: '580px'}}>
@@ -169,7 +170,7 @@ export default function Vocabularies() {
             <TableBody>
                 <TableRow>
                 <TableCell align="center">
-                    <Link href="/tuvung/:_id" underline="none" sx={{cursor: 'pointer'}}>{vocabulariesData.name}</Link>
+                    <Link to="/vocabulary/:_id" underline="none" sx={{cursor: 'pointer'}}>{vocabulariesData.name}</Link>
                 </TableCell>
                 <TableCell align="center">
                  {vocabulariesData.email}
