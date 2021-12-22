@@ -1,7 +1,7 @@
 import React,{ useState } from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import LockIcon from '@mui/icons-material/Lock';
-import { Typography, TextField, Grid, Button, Avatar, Container } from '@mui/material';
+import { Typography, TextField, Grid, Button, Avatar, Container, Box } from '@mui/material';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import { makeStyles } from '@mui/styles';
@@ -18,10 +18,13 @@ const useStyles = makeStyles((theme) => ({
     backgroundImage: `url(${BackgroundImage})`,
     backgroundRepeat: 'no-repeat',
     backgroundSize: '100% 100%',
+    minHeight: '584px',
+    paddingTop: '10px'
   },
   paper: {
     marginTop: theme.spacing(1),
     display: 'flex',
+    justifyContent: 'center',
     flexDirection: 'column',
     aligns: 'center',
     paddingBottom: theme.spacing(2),
@@ -44,7 +47,6 @@ const useStyles = makeStyles((theme) => ({
   },
   input: {
     position: 'relative',
-    marginTop: '6px'
   },
   errorMessage: {
     width:'100%',
@@ -56,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
     position: 'absolute',
     zIndex:'100',
     color: 'rgb(186, 184, 184)',
-    top: '24px',
+    top: '32px',
     right: '15px',
     cursor: 'pointer',
   },
@@ -64,7 +66,7 @@ const useStyles = makeStyles((theme) => ({
     position: 'absolute',
     zIndex:'100',
     color: 'rgb(186, 184, 184)',
-    top: '24px',
+    top: '32px',
     right: '15px',
     cursor: 'pointer',
   }
@@ -167,6 +169,7 @@ export default function SignUp() {
     }
   }
   const handleSignUp = (e)=>{
+    alert('Vui lòng đợi xác nhận thông tin!')
     if (checked===true){
       setEmailError('')
       if (validation(details)===false|| !details.name || !details.email || !details.password || !details.password2) {
@@ -184,11 +187,13 @@ export default function SignUp() {
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <div className={classes.paper}>
-          <Avatar className={classes.avatar}>
-            <LockIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            Đăng ký
+          <Box sx={{display: 'flex',justifyContent: 'center', alignItems: 'center'}}>
+            <Avatar className={classes.avatar}>
+              <LockIcon />
+            </Avatar>
+          </Box>
+          <Typography component="h1" variant="h5" sx={{textAlign: 'center', color: '#dd2c00'}}>
+            Đăng ký tài khoản!
           </Typography>
           <form className={classes.form} noValidate>
             <Grid container spacing={2}>
@@ -250,9 +255,12 @@ export default function SignUp() {
                   onChange={handleChange}
                   control={<Checkbox value="allowExtraEmails" color="primary" />}
                   label="" 
+                  sx={{paddingRight: '-10px', marginRight: 0}}
                 />
-                <Typography variant="body2">Tôi đã đọc và đồng ý chấp thuận các <Link to="/terms">điều khoản</Link> của Tiếng Nhật IT.</Typography>
-              </Grid>
+                <Box sx={{display: 'flex',justifyContent: 'center', alignItems: 'center'}}>
+                  <Typography variant="body2">Tôi đã đọc và đồng ý với các <Link to="/terms" style={{color: '#f50057'}}>điều khoản</Link> của Tiếng Nhật IT.</Typography>
+                </Box>
+                </Grid>
             </Grid>
             <Button
               type="button"
@@ -264,10 +272,11 @@ export default function SignUp() {
             >
               Đăng ký tài khoản
             </Button>
-            <Grid container justifyContent="flex-end">
-              <Grid >
-                <Link to="/login" variant="body2">
-                  Bạn đã có tài khoản? Đăng nhập
+            <Grid container justifyContent="flex-end" sx={{marginTop: '5px'}}>
+              <Grid>
+                Bạn đã có tài khoản!
+                <Link to="/login" variant="body2" style={{color: '#f50057'}}>
+                   Đăng nhập
                 </Link>
               </Grid>
             </Grid>

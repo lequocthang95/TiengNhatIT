@@ -1,4 +1,5 @@
 import React from 'react';
+import './index.css';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Header from './components/header';
 import Footer from './components/footer';
@@ -15,7 +16,6 @@ import CreatePost from './pages/community/creatPost'
 import Vocabularies from './pages/vocabularies';
 import Vocabulary from './pages/vocabulary';
 import { ThemeProvider , createTheme } from '@mui/material/styles';
-import './index.css';
 
 const theme = createTheme({
   typography: {
@@ -41,20 +41,20 @@ const theme = createTheme({
     },
   },  
 });
+const isLogin = localStorage.getItem('isLogin')
 function App() {
-  const Login= false;
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
-        <Header />
+        <Header/>
           <Switch>
             <Route path="/" exact><HomePage/></Route>
             <Route path={`/vocabularies/:_id`}><Vocabularies/></Route>
             <Route path={`/vocabulary/:_id`}><Vocabulary/></Route>
             <Route path="/community/ask" exact><CreatePost /></Route>
-            <Route path="/community"> <Community isLogin={Login} /></Route>
+            <Route path="/community"><Community isLogin={isLogin}/></Route>
             <Route path="/blogs" component={Blogs}></Route>
-            <Route path="/login" component={LogIn}></Route>
+            <Route path="/login"><LogIn/></Route>
             <Route path="/signup" component={SignUp}></Route>
             <Route path="/about"><About/></Route>
             <Route path="/terms"><Terms/></Route>

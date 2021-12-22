@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
+import * as api from '../../redux/api';
 import { MenuItem, Button, Container } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { alpha, } from '@mui/material/styles';
@@ -111,13 +113,31 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Header() {
   const classes = useStyles();
-  const [isLogin, setIsLogin] = React.useState('true');
-  const userInfo= isLogin;
+  const token = localStorage.getItem('accessToken');
+  const [isLogin,setIsLogin] = useState(localStorage.getItem('isLogin'));
+  const logOut = async () => {
+    try {
+      const response = await axios({
+        method: "get",
+        url: `${api.URL}/api/logout`,
+        params: {"token":`${token}`},
+        headers: {"Content-Type" : "application/json"},
+      })
+      if (response.data.success===true) {
+        window.location.reload();
+        alert("Bạn đã đăng xuất thành công")
+      }
+    } 
+    catch (error) {
+      console.log(error);
+    }
+  }
   const handleAccountLogOut = () => {
+    localStorage.setItem('isLogin',false)
+    logOut();
     localStorage.removeItem('accessToken')
-    handleAccountMenuClose();
     setIsLogin(false);
-
+    handleAccountMenuClose();
   }
   
   // set up menu pages list  in mobile
@@ -226,7 +246,7 @@ export default function Header() {
 
   //set up style for select menu, select
   const [selectedType,setSelectedType] = React.useState('');
-
+  
   return (
     <div className={classes.grow}>
       <AppBar position="fixed" color="default">
@@ -279,7 +299,7 @@ export default function Header() {
             />
           </div>
           <div className={classes.grow} />
-          {userInfo ? (
+          { isLogin==='true' ? (
           <div>
             <div className={classes.sectionDesktop}>
               <IconButton aria-label="show 4 new mails" color="inherit">

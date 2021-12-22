@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@mui/styles';
 import Posts from '../../components/posts';
-import { Box, Tabs, Tab, Typography, Button,Link, Grid, Container } from '@mui/material';
+import { Box, Tabs, Tab, Typography, Button, Grid, Container } from '@mui/material';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 const useStyles = makeStyles((theme) => ({
@@ -24,7 +25,6 @@ const useStyles = makeStyles((theme) => ({
 }))
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
-  
     return (
       <div
         role="tabpanel"
@@ -63,8 +63,6 @@ export default function Community({isLogin}) {
         setValue(newValue);
     }
     const [button1,setButton1] =useState('outlined')
-    console.log(isLogin)
-  
     return (
       <div className={classes.page}>
         <Container>
@@ -75,7 +73,7 @@ export default function Community({isLogin}) {
                         tiếng Nhật. Bạn có thể giúp đỡ người khác giải quyết vấn đề. Bạn cũng có thể chia sẽ những hiểu biết, kinh nghiệm 
                         của mình. Chúng tôi rất vui mừng và trân trọng những đóng góp của bạn!
                     </Typography> 
-                    <Link href="/community" underline="none">
+                    <Link to="/community">
                       <Button variant={button1} color="primary"
                           onMouseOver={ e => {setButton1('contained')}}
                           onMouseOut={e => {setButton1('outlined')}} style={{ marginTop: '20px'}}
@@ -107,9 +105,8 @@ export default function Community({isLogin}) {
                           </Grid>
                           <Grid item md={6} xs={12} sx={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}} >
                             <Typography variant="h5" color="primary">{title}</Typography>
-                            <Link href="/community/ask" underline="none">
-                                <Button variant="contained" disabled={isLogin===true ? false : true} >Đặt câu hỏi</Button>
-                            </Link>
+                            <Button variant="contained" disabled={isLogin==='true' ? false : true} > <Link to="/community/ask" underline="none">Đặt câu hỏi</Link></Button>
+                            
                           </Grid>
                         </Grid>
                     </Box>
