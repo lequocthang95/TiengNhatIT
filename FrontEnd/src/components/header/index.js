@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import * as api from '../../redux/api';
+import { useDispatch, useSelector } from 'react-redux';
 import { MenuItem, Button, Container } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { alpha, } from '@mui/material/styles';
@@ -12,7 +13,7 @@ import Badge from '@mui/material/Badge';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
-import AccountCircle from '@mui/icons-material/AccountCircle';
+// import AccountCircle from '@mui/icons-material/AccountCircle';
 import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
@@ -20,6 +21,11 @@ import SettingsApplicationsIcon from '@mui/icons-material/SettingsApplications';
 import PostAddIcon from '@mui/icons-material/PostAdd';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import {  Link,} from 'react-router-dom';
+import * as checkToken from '../../constants';
+import * as checkLogin from '../../constants/index';
+import stringAvatar from '../avatars';
+import Avatar from '@mui/material/Avatar';
+import { userState$ } from '../../redux/selectors'
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -76,6 +82,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'none',
     [theme.breakpoints.up('md')]: {
       display: 'flex',
+      justifyContent: 'space-between',
     },
   },
   menuDesktop: {
@@ -110,17 +117,15 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-
 export default function Header() {
   const classes = useStyles();
-  const token = localStorage.getItem('accessToken');
-  const [isLogin,setIsLogin] = useState(localStorage.getItem('isLogin'));
+  const [isLogin,setIsLogin] = useState(checkLogin.isLogin);
   const logOut = async () => {
     try {
       const response = await axios({
         method: "get",
         url: `${api.URL}/api/logout`,
-        params: {"token":`${token}`},
+        params: {"token":`${checkToken.token}`},
         headers: {"Content-Type" : "application/json"},
       })
       if (response.data.success===true) {
@@ -237,7 +242,7 @@ export default function Header() {
           aria-haspopup="true"
           color="inherit"
         >
-          <AccountCircle />
+        <Avatar {...stringAvatar('Kent Dodds')} />
         </IconButton>
         <p onClick={handleMobileMenuClose}>Profile</p>
       </MenuItem>
@@ -246,7 +251,8 @@ export default function Header() {
 
   //set up style for select menu, select
   const [selectedType,setSelectedType] = React.useState('');
-  
+  const dispatch = useDispatch();
+  const dataUser = useSelector(userState$);
   return (
     <div className={classes.grow}>
       <AppBar position="fixed" color="default">
@@ -320,8 +326,9 @@ export default function Header() {
                 onClick={handleAccountMenuOpen}
                 color="inherit"
               >
-                <AccountCircle />
+              <Avatar {...stringAvatar(`${dataUser.name}`)}/>
               </IconButton>
+            
             </div>
             <div className={classes.sectionMobile}>
               <IconButton

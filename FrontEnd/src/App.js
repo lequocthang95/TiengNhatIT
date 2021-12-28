@@ -12,10 +12,11 @@ import NotFound from './pages/notFound';
 import About from './pages/about';
 import Terms from './pages/terms';
 import Contacts from './pages/contacts'
-import CreatePost from './pages/community/creatPost'
+import CreatePost from './pages/community/posts/creatPost'
 import Vocabularies from './pages/vocabularies';
 import Vocabulary from './pages/vocabulary';
 import { ThemeProvider , createTheme } from '@mui/material/styles';
+import * as checkLogin from './constants/index'
 
 const theme = createTheme({
   typography: {
@@ -41,7 +42,6 @@ const theme = createTheme({
     },
   },  
 });
-const isLogin = localStorage.getItem('isLogin')
 function App() {
   return (
     <ThemeProvider theme={theme}>
@@ -52,7 +52,7 @@ function App() {
             <Route path={`/vocabularies/:_id`}><Vocabularies/></Route>
             <Route path={`/vocabulary/:_id`}><Vocabulary/></Route>
             <Route path="/community/ask" exact><CreatePost /></Route>
-            <Route path="/community"><Community isLogin={isLogin}/></Route>
+            <Route path="/community"><Community isLogin={checkLogin.isLogin}/></Route>
             <Route path="/blogs" component={Blogs}></Route>
             <Route path="/login"><LogIn/></Route>
             <Route path="/signup" component={SignUp}></Route>
