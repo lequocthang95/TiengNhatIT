@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import axios from 'axios'
 import * as api from '../../redux/api'
 import CssBaseline from '@mui/material/CssBaseline';
@@ -7,8 +7,8 @@ import { Typography, Box, TextField, Grid, Button, Avatar, Container } from '@mu
 import { makeStyles } from '@mui/styles';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import { Link} from "react-router-dom";
-import Background from '../../images/login/nen.jpg'
+import { Link, useHistory } from "react-router-dom";
+import Background from '../../images/login/nen.jpg';
 
 const useStyles = makeStyles((theme) => ({
   page: {
@@ -62,7 +62,7 @@ export default function LogIn() {
   const handleShowPassword = ()=>{
     labelType === 'password'? setLabelType('text') : setLabelType('password') ;   
   }
-  // let history = useHistory();
+  let history = useHistory();
   const [details,setDetails] = useState({email: '', password:''})
   const [resErrorEmail,setResErrorEmail] = useState('')
   const [resErrorPassword,setResErrorPassword] = useState('')
@@ -75,13 +75,21 @@ export default function LogIn() {
         method: "post",
         url: `${api.URL}/api/login`,
         data: details,
-        headers:{"Content-Type" : "multipart/form-data"},
+        headers:{"Content-Type" : "application/json"},
       })
-      if (response){
-        console.log(response)
-      }
-      console.log(response.xsrfCookieName)
-      
+      if (response.data.success===true) {
+        localStorage.setItem('accessToken', response.data.token)
+        localStorage.setItem('isLogin',true)
+        alert('Đăng nhập thành công!')
+        history.push('/')
+        window.location.reload();
+      } 
+      if (response.data.success===false) {
+        alert('Thông tin đăng nhập không hợp lệ!')
+      } 
+      if (response.data.error) {
+        alert('Thông tin đăng nhập không hợp lệ!')
+      } 
     } 
     catch (error) {
       console.log(error);

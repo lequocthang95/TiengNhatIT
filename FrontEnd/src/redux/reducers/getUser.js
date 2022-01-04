@@ -1,21 +1,20 @@
-import { createAccount, getType} from '../actions/account';
+import { getUser, getType} from '../actions/getUser';
 import { INIT_STATE } from '../state';
 
-export default function Account(state = INIT_STATE.AccountData, action) {
+export default function loadUser(state = INIT_STATE.userData, action) {
     switch (action.type) {
-      case getType(createAccount.createAccountRequest):
+      case getType(getUser.getUserRequest):
         return {
           ...state,
           isLoading: true,
-          data: action.payload,
         };
-      case getType(createAccount.createAccountSuccess):
+      case getType(getUser.getUserSuccess):
         return {
           ...state,
           isLoading: false,
           data: action.payload,
         };
-      case getType(createAccount.createAccountFailure):
+      case getType(getUser.getUserFailure):
         return {
           ...state,
           isLoading: false,

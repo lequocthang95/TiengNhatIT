@@ -1,21 +1,20 @@
 import * as api from '../api';
 import { takeLatest, call, put } from 'redux-saga/effects';
-import * as actionsCategories from '../actions/categories';
+import * as actionsGetUser from '../actions/getUser'
 
-function* showCategories(action) {
+function* getUserData(action) {
   try {
-    const categories = yield call(api.fetchCategories);
-    yield put(actionsCategories.getCategories.getCategoriesSuccess(categories.data));
+    const getDataUser = yield call(api.getUser);
+    yield put(actionsGetUser.getUser.getUserSuccess(getDataUser.data));
   } 
   catch (err) {
     console.error(err);
-    yield put(actionsCategories.getCategories.getCategoriesFailure(err));
+    yield put(actionsGetUser.getUser.getUserFailure(err));
   }
 }
 
-
 function* RootSagas() {
-  yield takeLatest(actionsCategories.getCategories.getCategoriesRequest, showCategories);
+  yield takeLatest(actionsGetUser.getUser.getUserRequest, getUserData);
 }
 
 export default RootSagas;

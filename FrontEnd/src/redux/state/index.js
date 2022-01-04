@@ -11,7 +11,7 @@ export const INIT_STATE = {
       isLoading: false,
       data: [],
     },
-    AccountData: {
+    userData: {
       isLoading: false,
       data: [],
     }
