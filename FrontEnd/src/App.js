@@ -12,7 +12,7 @@ import NotFound from './pages/notFound';
 import About from './pages/about';
 import Terms from './pages/terms';
 import Contacts from './pages/contacts'
-import CreatePost from './pages/community/posts/creatPost'
+import CreatePost from './pages/community/creatPost'
 import Vocabularies from './pages/vocabularies';
 import Vocabulary from './pages/vocabulary';
 import { ThemeProvider , createTheme } from '@mui/material/styles';
@@ -29,14 +29,6 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           fontSize: '1.4rem',
-        },
-      },
-    },
-    MuiTypography: {
-      styleOverrides: {
-        root: {
-          Typography: { fontSize: '2rem'},
-          body2: { fontSize: '2rem'},
         },
       },
     },

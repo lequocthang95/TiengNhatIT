@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Typography, Grid, Button, Box } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
+import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import { Link } from 'react-router-dom';
@@ -143,7 +143,7 @@ export default function About() {
                     <Link to="/lienhe">
                         <Button variant="contained" color="primary" >
                             Contacts us   
-                            <ArrowRightAltIcon className={classes.icon} />
+                            <ArrowRightIcon className={classes.icon} />
                         </Button>
                     </Link> 
                 </div>

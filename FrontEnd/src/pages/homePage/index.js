@@ -58,7 +58,7 @@ export default function HomePage() {
               Chúng tôi hi vọng các bạn cùng tham với chúng tôi để cùng nhau xây dựng một cộng đồng gắt kết, 
               để cùng nhau ngày càng phát triển.
             </Typography>
-            <div style={{marginTop: '30px',}}>
+            <div style={{marginTop: '30px'}}>
               <Link href="/dangnhap" underline="none">
                 <Button variant={button1} color="primary"
                   onMouseOver={ e => {setButton1('contained');setButton2('outlined')}}
