@@ -4,6 +4,8 @@ import Posts from '../../components/posts';
 import { Box, Tabs, Tab, Typography, Button, Grid, Container } from '@mui/material';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import ModalBasic from '../../components/modals/basicModal';
+import SignIn from '../../components/SignIn';
 
 const useStyles = makeStyles((theme) => ({
   page: {
@@ -73,14 +75,13 @@ export default function Community({isLogin}) {
                         tiếng Nhật. Bạn có thể giúp đỡ người khác giải quyết vấn đề. Bạn cũng có thể chia sẽ những hiểu biết, kinh nghiệm 
                         của mình. Chúng tôi rất vui mừng và trân trọng những đóng góp của bạn!
                     </Typography> 
-                    <Link to="/community">
-                      <Button variant={button1} color="primary"
-                          onMouseOver={ e => {setButton1('contained')}}
-                          onMouseOut={e => {setButton1('outlined')}} style={{ marginTop: '20px'}}
-                      >
-                          Đăng Nhập
-                      </Button>
-                    </Link>
+                    <ModalBasic ModalName={ <Button variant={button1} color="primary"
+                                              onMouseOver={ e => {setButton1('contained')}}
+                                              onMouseOut={e => {setButton1('outlined')}} style={{ marginTop: '20px'}}
+                                            >
+                                              Đăng Nhập
+                                            </Button>} 
+                                ModalContent={<SignIn/>}/>                 
                 </div>
                 <div style={{marginTop: '30px'}}>
                     <Grid container>

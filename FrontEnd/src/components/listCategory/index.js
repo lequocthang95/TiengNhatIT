@@ -2,20 +2,15 @@ import * as React from 'react';
 import { MenuList, MenuItem, Menu, IconButton} from '@mui/material';
 import ViewListIcon from '@mui/icons-material/ViewList';
 import { useDispatch, useSelector } from 'react-redux';
-import * as actions from '../../redux/actions/categories';
-import { categoriesState$ } from '../../redux/selectors';
+
 
 export default function ListCategory() {
   const dispatch = useDispatch();
-  const categories = useSelector(categoriesState$);
   const [selectedIndex, setSelectedIndex] = React.useState(null);
   const handleListItemClick = (event, index) => {
     setSelectedIndex(index);
     setMobileMoreAnchorEl(null);
   };
-  React.useEffect(() => {
-    dispatch(actions.getCategories.getCategoriesRequest());
-  }, [dispatch]);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
   const handleMobileMenuOpen = (event) => {
@@ -65,16 +60,6 @@ export default function ListCategory() {
             maxHeight: 600,
           }}
         >
-          {categories.map((item,index) => ( 
-            <MenuItem
-              onClick={handleListItemClick}
-              selected={selectedIndex === index}
-              key={index}
-             sx={{paddingLeft: '30px',fontSize: 18}}
-            >
-              {item.name}
-            </MenuItem>
-          ))}
         </MenuList>
       </Menu>
     </div>

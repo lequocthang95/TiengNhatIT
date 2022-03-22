@@ -14,10 +14,12 @@ import MenuItem from '@mui/material/MenuItem';
 import {  Link,} from 'react-router-dom';
 import { makeStyles } from '@mui/styles';
 import axios from 'axios';
-import * as api from '../../redux/api';
 import { useDispatch, useSelector } from 'react-redux';
-import * as checkToken from '../../constants';
-import * as checkLogin from '../../constants/index';
+import * as checkToken from '../constants';
+import * as checkLogin from '../constants/index';
+import ModalBasic from './modals/basicModal.js';
+import SignIn from './SignIn';
+import SignUp from './SignUp';
 
 const pages = ['community', 'blogs', 'about','terms','contacts'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
@@ -75,26 +77,10 @@ const HeaderComponent = () => {
   const classes = useStyles();
   const [selectedType,setSelectedType] = React.useState('');
   const [isLogin,setIsLogin] = React.useState(checkLogin.isLogin);
-  const logOut = async () => {
-    try {
-      const response = await axios({
-        method: "get",
-        url: `${api.URL}/api/logout`,
-        params: {"token":`${checkToken.token}`},
-        headers: {"Content-Type" : "application/json"},
-      })
-      if (response.data.success===true) {
-        window.location.reload();
-        alert("Bạn đã đăng xuất thành công")
-      }
-    } 
-    catch (error) {
-      console.log(error);
-    }
-  }
+
   const handleAccountLogOut = () => {
     localStorage.setItem('isLogin',false)
-    logOut();
+ 
     localStorage.removeItem('accessToken')
     setIsLogin(false);
     handleCloseUserMenu();
@@ -177,7 +163,7 @@ const HeaderComponent = () => {
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar alt="" src="/static/images/avatar/2.jpg" />
+                  {isLogin==='true' ? <Avatar alt="s" src="/static/images/avatar/2.jpg" /> :<Avatar {...stringAvatar('Tim Neutkens')} />}
                 </IconButton>
               </Tooltip>
               <Menu
@@ -204,20 +190,10 @@ const HeaderComponent = () => {
               </Menu>
             </Box>
           ):(
-            <div>
-              <Link to="/signUp">
-                <Button className={selectedType==='signup' ? classes.selected : ''}
-                  onClick = {() => setSelectedType('signup')}>  
-                    Đăng Ký 
-                </Button>
-              </Link>
-              <Link to="/logIn">
-                <Button className={selectedType==='signin' ? classes.selected : ''}
-                  onClick = {() => setSelectedType('signin')}>
-                  Đăng Nhập
-                </Button>
-              </Link>
-            </div>
+            <Box sx={{display:'flex'}}>
+              <ModalBasic ModalName={<Button>Đăng Ký</Button>} ModalContent={<SignUp/>} />
+              <ModalBasic ModalName={<Button>Đăng Nhập</Button>} ModalContent={<SignIn/>} />
+            </Box>
           )} 
         </Toolbar>
       </Container>

@@ -1,13 +1,11 @@
 import React from 'react';
 import './index.css';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import Header from './components/header';
+import Header from './components/Header.js';
 import Footer from './components/footer';
 import HomePage from './pages/homePage';
 import Community from './pages/community';
 import Blogs from './pages/blogs';
-import LogIn from './pages/logIn';
-import SignUp from './pages/signUp';
 import NotFound from './pages/notFound';
 import About from './pages/about';
 import Terms from './pages/terms';
@@ -16,7 +14,7 @@ import CreatePost from './pages/community/creatPost'
 import Vocabularies from './pages/vocabularies';
 import Vocabulary from './pages/vocabulary';
 import { ThemeProvider , createTheme } from '@mui/material/styles';
-import * as checkLogin from './constants/index'
+import * as checkLogin from './constants/index';
 
 const theme = createTheme({
   typography: {
@@ -46,8 +44,6 @@ function App() {
             <Route path="/community/ask" exact><CreatePost /></Route>
             <Route path="/community"><Community isLogin={checkLogin.isLogin}/></Route>
             <Route path="/blogs" component={Blogs}></Route>
-            <Route path="/login"><LogIn/></Route>
-            <Route path="/signup" component={SignUp}></Route>
             <Route path="/about"><About/></Route>
             <Route path="/terms"><Terms/></Route>
             <Route path="/contacts"><Contacts/></Route>

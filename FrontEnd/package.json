@@ -1,5 +1,5 @@
 {
-  "name": "team2-app",
+  "name": "tieng-nhat-it",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -27,7 +27,6 @@
     "react-swipeable-views": "^0.14.0",
     "react-typed": "^1.2.0",
     "redux-actions": "^2.6.5",
-    "redux-saga": "^1.1.3",
     "web-vitals": "^1.0.1"
   },
   "scripts": {
