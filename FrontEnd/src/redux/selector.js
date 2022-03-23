@@ -5,3 +5,4 @@ export const listCategoriesSelector = (state)=> {
     return listCategories;
 };
 export const searchCategoriesSelector = (state)=> state.categories.search;
+export const userSelector = (state) => state.user;

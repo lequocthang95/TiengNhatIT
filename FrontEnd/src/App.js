@@ -14,7 +14,7 @@ import CreatePost from './pages/community/creatPost'
 import Vocabularies from './pages/vocabularies';
 import Vocabulary from './pages/vocabulary';
 import { ThemeProvider , createTheme } from '@mui/material/styles';
-import * as checkLogin from './constants/index';
+
 
 const theme = createTheme({
   typography: {
@@ -23,13 +23,6 @@ const theme = createTheme({
     ].join(','),
   },
   components: {
-    MuiMenuItem: {
-      styleOverrides: {
-        root: {
-          fontSize: '1.4rem',
-        },
-      },
-    },
   },  
 });
 function App() {
@@ -42,7 +35,7 @@ function App() {
             <Route path={`/vocabularies/:_id`}><Vocabularies/></Route>
             <Route path={`/vocabulary/:_id`}><Vocabulary/></Route>
             <Route path="/community/ask" exact><CreatePost /></Route>
-            <Route path="/community"><Community isLogin={checkLogin.isLogin}/></Route>
+            <Route path="/community"><Community/></Route>
             <Route path="/blogs" component={Blogs}></Route>
             <Route path="/about"><About/></Route>
             <Route path="/terms"><Terms/></Route>

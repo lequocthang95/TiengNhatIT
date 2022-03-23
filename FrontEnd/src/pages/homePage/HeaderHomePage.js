@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Grid, Typography, Box, Link, Button } from '@mui/material';
 import ModalBasic from '../../components/modals/basicModal';
-import SignIn from '../../components/SignIn';
+import SignIn from '../../components/signIn';
 import HeadImage from '../../images/homePage/header.jpg';
 
 const styles = {

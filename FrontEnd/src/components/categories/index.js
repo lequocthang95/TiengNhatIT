@@ -3,8 +3,8 @@ import { Grid, Typography, Box } from '@mui/material';
 import Category from './Category';
 import TextField from '@mui/material/TextField';
 import { useDispatch, useSelector } from 'react-redux';
-import { showCategories, searchCategoriesChange } from '../../redux/actions'
 import { searchCategoriesSelector,listCategoriesSelector } from '../../redux/selector';
+import categoriesSlice from './categoriesSlice';
 
 const test = [
   {
@@ -42,14 +42,14 @@ const style = {
 export default function Categories() {
   const dispatch = useDispatch();
   const handleChangeSearchChange = (e) => {
-    dispatch(searchCategoriesChange(e.target.value))
+    dispatch(categoriesSlice.actions.searchCategoriesChange(e.target.value))
   }
   React.useEffect(() => {
-    dispatch(showCategories(test));
+    dispatch(categoriesSlice.actions.showCategories(test));
   })
   const list = useSelector(listCategoriesSelector)
   const searchText = useSelector(searchCategoriesSelector);
-  console.log(list);
+
   return (
     <div>
       <Box sx={style}>

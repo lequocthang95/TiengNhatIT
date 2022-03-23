@@ -5,7 +5,7 @@ import { Box, Tabs, Tab, Typography, Button, Grid, Container } from '@mui/materi
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import ModalBasic from '../../components/modals/basicModal';
-import SignIn from '../../components/SignIn';
+import SignIn from '../../components/signIn';
 
 const useStyles = makeStyles((theme) => ({
   page: {

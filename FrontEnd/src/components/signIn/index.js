@@ -14,13 +14,17 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import { useDispatch, useSelector } from 'react-redux';
+import { signIn } from './signInSlice';
+import { useHistory } from 'react-router-dom';
+import { userSelector } from '../../redux/selector'
 
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
       <Link color="inherit" href="/">
-      www.TiengNhatIT.com
+        www.TiengNhatIT.com
       </Link>{'-'}
       {new Date().getFullYear()}
       {'.'}
@@ -37,13 +41,26 @@ const style = {
 };
 
 export default function SignIn() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const [details, setDetails] = React.useState({ email: '', password: '' })
+  const fetchOneUser = async (data) => {
+    try {
+      const user = await dispatch(signIn(data));
+      console.log('success', `Fetched ${user.name}`)
+    } catch (err) {
+      console.log('error', `Fetch failed: ${err.message}`)
+    }
+  }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    fetchOneUser(details);
   };
-  const [labelType,setLabelType] = React.useState('password')
-  const handleShowPassword = ()=>{
-    labelType === 'password'? setLabelType('text') : setLabelType('password') ;   
+  const user = useSelector(userSelector);
+  console.log(user);
+  const [labelType, setLabelType] = React.useState('password')
+  const handleShowPassword = () => {
+    labelType === 'password' ? setLabelType('text') : setLabelType('password');
   }
   return (
     <ThemeProvider theme={theme}>
@@ -73,10 +90,12 @@ export default function SignIn() {
               name="email"
               autoComplete="email"
               autoFocus
+              onChange={e => setDetails({ ...details, email: e.target.value })}
+              value={details.email}
             />
-      
+
             <Box sx={style}>
-              {labelType === 'password' ? <VisibilityIcon  onClick={handleShowPassword} /> : <VisibilityOffIcon onClick={handleShowPassword} /> }
+              {labelType === 'password' ? <VisibilityIcon onClick={handleShowPassword} /> : <VisibilityOffIcon onClick={handleShowPassword} />}
             </Box>
             <TextField
               margin="normal"
@@ -87,8 +106,10 @@ export default function SignIn() {
               type={labelType}
               id="password"
               autoComplete="current-password"
+              onChange={e => setDetails({ ...details, password: e.target.value })}
+              value={details.password}
             />
-          
+
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"

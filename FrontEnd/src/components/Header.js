@@ -13,12 +13,8 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import {  Link,} from 'react-router-dom';
 import { makeStyles } from '@mui/styles';
-import axios from 'axios';
-import { useDispatch, useSelector } from 'react-redux';
-import * as checkToken from '../constants';
-import * as checkLogin from '../constants/index';
 import ModalBasic from './modals/basicModal.js';
-import SignIn from './SignIn';
+import SignIn from '../components/signIn';
 import SignUp from './SignUp';
 
 const pages = ['community', 'blogs', 'about','terms','contacts'];
@@ -56,7 +52,7 @@ function stringAvatar(name) {
     children: `${name.split(' ')[0][0]}${name.split(' ')[1][0]}`,
   };
 }
-const HeaderComponent = () => {
+const Header = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -76,7 +72,7 @@ const HeaderComponent = () => {
   };
   const classes = useStyles();
   const [selectedType,setSelectedType] = React.useState('');
-  const [isLogin,setIsLogin] = React.useState(checkLogin.isLogin);
+  const [isLogin,setIsLogin] = React.useState('');
 
   const handleAccountLogOut = () => {
     localStorage.setItem('isLogin',false)
@@ -200,4 +196,4 @@ const HeaderComponent = () => {
     </AppBar>
   );
 };
-export default HeaderComponent;
+export default Header;
